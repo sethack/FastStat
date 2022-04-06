@@ -1,0 +1,17 @@
+.navbar{
+    overflow: hidden;
+}
+.navbar img{
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px; 
+}
+.navbar a{
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
