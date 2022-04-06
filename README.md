@@ -1,3 +1,0 @@
-# FastStat
-
-Cooper pushed this
