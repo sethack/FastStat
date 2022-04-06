@@ -4,7 +4,7 @@ h2{
 div{
     text-align: center;
     width: 300px;
-    height: 180px;
+    height: 300px;
     border: 1px solid black;
     padding: 50px;
     position: relative;
@@ -17,4 +17,3 @@ div{
     left: 50%;
     transform: translateX(-50%);
 }
-
