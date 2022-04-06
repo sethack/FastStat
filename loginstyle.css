@@ -1,0 +1,19 @@
+h2{
+    text-align: center;
+}
+div{
+    text-align: center;
+    width: 300px;
+    height: 180px;
+    border: 1px solid black;
+    padding: 50px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.form{
+    width: 150px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
