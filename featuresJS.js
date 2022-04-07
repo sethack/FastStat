@@ -2,6 +2,7 @@
 JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
+    legend_visible: false,
     xAxis: { scale_type: 'time' },
     series: [
       {
