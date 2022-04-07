@@ -1,0 +1,22 @@
+h2{    
+    grid-area: head;
+    border: 1px solid black;
+}
+#statTable{      
+     
+    flex: auto 1 100%;
+}
+th, td{
+    border: 1px solid black;
+}
+#links{    
+    border: 1px solid black;    
+    flex: auto 1 100%;
+}
+#graph {     
+    
+    flex: auto 1 100%;
+}
+#container {
+    display: flex;
+}
