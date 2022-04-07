@@ -1,11 +1,15 @@
 
+document.addEventListener('DOMContentLoaded', () => {
+ // how are we acessing differnt files?
+})
+
 JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
     legend_visible: false,
     xAxis: { scale_type: 'time' },
     series: [
-      {
+      { 
         name: 'Date',
         points: [
           ['1/1/2022', 29.9],
@@ -18,3 +22,7 @@ JSC.Chart('myChart', {
       }
     ]
 });
+function createaccount (){
+
+ // how are we acessing differnt files?
+}
