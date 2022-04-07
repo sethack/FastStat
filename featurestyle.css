@@ -1,9 +1,8 @@
 h2{    
-    grid-area: head;
-    border: 1px solid black;
+    
+    background-color: lightcoral;
 }
-#statTable{      
-     
+#statTable{   
     flex: auto 1 100%;
 }
 th, td{
@@ -19,4 +18,32 @@ th, td{
 }
 #container {
     display: flex;
+}
+.navbar{
+    background-color: lightcoral;
+    overflow: hidden;
+}
+.navbar img{
+    border-radius: 50%;
+    width: 1.5%;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px; 
+}
+.navbar input{
+    position:relative;
+    float:right;
+    text-align: center;
+    top: 12px;
+    text-decoration: none;
+}
+.navbar a{
+    color:black;
+    float: right;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
 }
