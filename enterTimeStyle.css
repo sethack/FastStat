@@ -1,17 +1,43 @@
 .navbar{
+    background-color: lightcoral;
     overflow: hidden;
 }
 .navbar img{
+    border-radius: 50%;
+    width: 1.5%;
     float: right;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px; 
 }
+.navbar input{
+    position:relative;
+    float:right;
+    text-align: center;
+    top: 12px;
+    text-decoration: none;
+}
 .navbar a{
+    color:black;
     float: right;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+.navbar a:hover, .sidebar p:hover{
+    color: blue;
+}
+.sidebar{
+    overflow: hidden;
+    padding:10px;
+    height: 1000px;
+    background-color: lightgrey;
+    width:20%;
+    float: left;
+}
+.mainpg{
+    right:1%;
+    transform: translateX(1%);
 }
