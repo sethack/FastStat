@@ -1,6 +1,6 @@
-
+let dict = {}
 document.addEventListener('DOMContentLoaded', () => {
- // how are we acessing differnt files?
+ console.log(document)
 })
 
 JSC.Chart('myChart', {
@@ -25,4 +25,10 @@ JSC.Chart('myChart', {
 function createaccount (){
 
  // how are we acessing differnt files?
+}
+function addplayer (){
+
+}
+function createaccounttojson(username,password){ // give a username and a password
+    dict[username] = password
 }
