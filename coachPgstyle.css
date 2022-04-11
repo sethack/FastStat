@@ -29,6 +29,9 @@
 .navbar a:hover, .sidebar p:hover{
     color: blue;
 }
+a.icon{
+    float: left;
+}
 .sidebar{
     overflow: hidden;
     padding:10px;
