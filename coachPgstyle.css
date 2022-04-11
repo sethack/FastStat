@@ -4,7 +4,7 @@
 }
 .navbar img{
     border-radius: 50%;
-    width: 1.5%;
+    width: 20px;
     float: right;
     text-align: center;
     padding: 14px 16px;
@@ -19,7 +19,7 @@
     text-decoration: none;
 }
 .navbar a{
-    color:black;
+    color:white;
     float: right;
     text-align: center;
     padding: 14px 16px;
@@ -27,7 +27,7 @@
     font-size: 17px;
 }
 .navbar a:hover, .sidebar p:hover{
-    color: blue;
+    color: black;
 }
 a.icon{
     float: left;
