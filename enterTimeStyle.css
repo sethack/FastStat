@@ -4,7 +4,7 @@
 }
 .navbar img{
     border-radius: 50%;
-    width: 45px;
+    width: 40px;
     float: right;
     text-align: center;
     padding: 20px 16px;
@@ -46,11 +46,36 @@
     width:20%;
     float: left;
 }
+.sidebar a {
+    color: white;
+    float: center;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: 24px;
+    position: absolute;
+    top: 90px;
+    left: 20;
+}
+.sidebar .results{
+    position: absolute;
+    top: 130px;
+    left: 20px;
+}
 .mainpg{
     right:1%;
     transform: translateX(1%);
 }
 .mainpg p{
     font-size: 20px;
+}
+.textBox{
+    padding: 10px;
+    float: center;
+    width: 75%;
+}
+.submit{
+    padding: 10px;
+    float: right;
+    width: 10%;
 }
 
