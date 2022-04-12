@@ -4,7 +4,7 @@
 }
 .navbar img{
     border-radius: 50%;
-    width: 20px;
+    width: 1.5%;
     float: right;
     text-align: center;
     padding: 14px 16px;
@@ -19,7 +19,7 @@
     text-decoration: none;
 }
 .navbar a{
-    color:white;
+    color:black;
     float: right;
     text-align: center;
     padding: 14px 16px;
@@ -27,10 +27,7 @@
     font-size: 17px;
 }
 .navbar a:hover, .sidebar p:hover{
-    color: black;
-}
-a.icon{
-    float: left;
+    color: blue;
 }
 .sidebar{
     overflow: hidden;
@@ -43,13 +40,4 @@ a.icon{
 .mainpg{
     right:1%;
     transform: translateX(1%);
-}
-table{
-    width: 77%;
-}
-table, tr, td {
-    border: 1px solid;
-}
-.two{
-    background-color: lightblue;
 }

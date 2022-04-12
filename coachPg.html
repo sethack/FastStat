@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src = "featuresJS.js"></script>
     <link rel = "stylesheet" href = "coachPgstyle.css"> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +10,19 @@
 </head>
 <body>
     <div class = "navbar">
-        <input type = "text">
         <a class ="icon" href="HOMEPAGELINK">FastStat</a>
         <a href="VIEWROSTERLINK">View Roster</a>
         <a href="ACCOUNTLINK">Account</a>
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt = "Profile Picture">
     </div>
     <div class = "sidebar">
-        <p>Add to roster</p>
-        <p>Log out</p>
+        <button id = "addtoroster" type="button">Add to roster</button> <!--make button easier to click, thinking it is a css thing-->
+        <br />
+        <br />
+        <button id = "remove" type = "button">Remove from roster </button> <!--Maybe dont want buttons for this idk-->
+        <br />
+        <br />
+        <button id = "lgout" type = "button">Log out</button>
     </div>
     <div class = "mainpg">
         <p> TEAM NAME Roster</p>
