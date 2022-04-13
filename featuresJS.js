@@ -1,5 +1,4 @@
-let dict = {}
-let players = {}
+
 document.addEventListener('DOMContentLoaded', () => {
  console.log(document)
  addplayer()
@@ -60,7 +59,7 @@ let player = {
   username: "",
   email: "",
   password: "",
-  times: [], // maybe?
+  times: [[]], // maybe?
 
 
 }
@@ -70,3 +69,5 @@ let coach = {
   email: "",
   password: "",
 }
+
+let 
