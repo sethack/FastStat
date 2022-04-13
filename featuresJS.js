@@ -54,12 +54,12 @@ function removeplayer(){
   })
 }
 
-let player = {
-  name: "",
-  username: "",
-  email: "",
-  password: "",
-  times: [[]], // maybe?
+function player(name,username,email,password,times) {
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+  this.times = times;
 
 
 }
