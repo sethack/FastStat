@@ -54,6 +54,19 @@ function removeplayer(){
     }
   })
 }
-function createaccounttojson(username,password){ // give a username and a password
-    dict[username] = password  // hopefully like the password value can be an object?
+
+let player = {
+  name: "",
+  username: "",
+  email: "",
+  password: "",
+  times: [], // maybe?
+
+
+}
+let coach = {
+  name: "",
+  username: "",
+  email: "",
+  password: "",
 }
