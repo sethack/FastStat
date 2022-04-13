@@ -38,14 +38,14 @@
 .navbar a:hover, .sidebar a:hover{
     color: Black;
 }
-.sidebar{
+/* .sidebar{
     overflow: hidden;
     padding:10px;
     height: 1000px;
     background-color: lightgrey;
     width:20%;
     float: left;
-}
+} */
 .sidebar a {
     color: white;
     float: center;
@@ -71,7 +71,7 @@
 .textBox{
     padding: 10px;
     float: center;
-    width: 75%;
+    width: 97%;
 }
 .submit{
     padding: 10px;
