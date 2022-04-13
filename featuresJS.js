@@ -1,6 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
- // how are we acessing differnt files?
+ console.log(document)
+ addplayer()
+ removeplayer()
 })
 
 JSC.Chart('myChart', {
@@ -26,3 +28,46 @@ function createaccount (){
 
  // how are we acessing differnt files?
 }
+function addplayer (){
+  const adding = document.getElementById("addtoroster");
+  adding.addEventListener('click', () => {
+    let player = prompt("Input player");
+    console.log(player)
+    //Search for player in database
+    //Add that player to the players dictionary !!
+    
+    //If false return error
+    //Else add the player to the table
+  })
+}
+function removeplayer(){
+
+  const removing = document.getElementById("remove");
+  removing.addEventListener('click', ()=>{
+    let player = prompt("Input player");
+    if(players.has(player)){
+      alert("already have player in table!")
+        }
+    else{
+      console.log("searching......") // look for the players in this data base ig?
+    }
+  })
+}
+
+let player = {
+  name: "",
+  username: "",
+  email: "",
+  password: "",
+  times: [[]], // maybe?
+
+
+}
+let coach = {
+  name: "",
+  username: "",
+  email: "",
+  password: "",
+}
+
+let 
