@@ -40,6 +40,25 @@
 }
 
 .mainpg img {
-    height: 100px;
+    height: 200px;
+    padding: 50px;
+}
 
+.mainpg h1 {
+    position: relative;
+    left: 350px;
+    top: -250px;
+}
+
+.mainpg .team {
+    position: relative;
+    left: 350px;
+    top: -250px;
+}
+
+.mainpg .times{
+    position: relative;
+    top: -130px;
+    left: 100px;
+    
 }
