@@ -76,6 +76,8 @@
 .submit{
     padding: 10px;
     float: right;
-    width: 10%;
+    scale: 10%;
+    width:10%;
+    height: auto;
 }
 

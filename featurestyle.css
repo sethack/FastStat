@@ -60,7 +60,7 @@ th, td{
     text-decoration: none;
     font-size: 17px;
 } */
-#enterTime{
+/* #enterTime{
     color: black;
     margin: 20px;
     font-size: 15pt;
@@ -76,4 +76,7 @@ th, td{
     float: left;
     padding: 20px;
     top: -30px;
+} */
+h2{
+    padding: 10px;
 }
