@@ -52,15 +52,14 @@ th, td{
     text-decoration: none;
     font-size: 24px;
 }
-/* .navbar a{
-    color:black;
-    float: right;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-} */
+.navbar a:hover, .sidebar a:hover{
+    color: Black;
+}
 /* #enterTime{
+=======
+>>>>>>> b021645043e0c91fd9c3df1d7b0f05e4269d2330
+#enterTime{
+>>>>>>> 1c081c51b5ca9b379a6ac2cd060e578f41065c31
     color: black;
     margin: 20px;
     font-size: 15pt;
@@ -75,6 +74,7 @@ th, td{
     text-decoration: none;
     float: left;
     padding: 20px;
+<<<<<<< HEAD
     top: -30px;
 } */
 h2{
