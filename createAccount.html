@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src ="script.js"></script>
+    <script src ="featuresJS.js"></script>
     <link rel = "stylesheet" href = "createAccountStyle.css"> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,24 +18,28 @@
         Create Account
     <br />
     <br />
-        <form class = "form">
-                <input type="radio" name="profileType" value="Coach" id="Coach">
+        <form class = "form" action="" id="createAccountForm">
+                <!-- <input type="radio" name="profileType" value="Coach" id="Coach">
                 <label for="Coach">Coach</label> <br />
                 <input type="radio" name="profileType" value="Swimmer" id="Swimmer">
-                <label for="Swimmer">Swimmer</label> <br />
-            <input type = "text" name = "name" placeholder="Name"> <br />
-            <input type = "text" name = "username" placeholder="Username"> <br />
-            <input type = "email" name = "email" placeholder="Email"> <br />
-            <input type = "password" name = "password" placeholder="Password"> <br />
-            <input type = "password" name = "passwordConfirm" placeholder="Confirm Password"> <br />
+                <label for="Swimmer">Swimmer</label> <br /> -->
+            <select name="Profile Type" required>
+                <option>Please choose an account type</option>
+                <option value="Coach">Coach</option>
+                <option value="Swimmer">Swimmer</option>
+            </select>
+            <input type = "text" name = "name" placeholder="Name" id="name" required> <br />
+            <input type = "text" name = "username" placeholder="Username" id="username" required> <br />
+            <input type = "email" name = "email" placeholder="Email" id="email" required> <br />
+            <input type = "password" name = "password" placeholder="Password" id="password" required> <br />
+            <input type = "password" name = "passwordConfirm" placeholder="Confirm Password" id="cPassword" required> <br />
         <br />
-        <input id = "accountcreate" type = "submit" value = "Create Account">
+        <input type = "button" value = "Create Account" id="caButton">
         <br />
         <br />
         <br />
         <a href = "logIn.html"> Already have an account? Login</a> 
         </form>
     </div>
-    <script src ="script.js"></script>
 </body>
 </html>
