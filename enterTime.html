@@ -1,19 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel = "stylesheet" href = "coachPgstyle.css"> 
+    <link rel = "stylesheet" href = "enterTimeStyle.css"> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script></script>
+    <title>Enter Time</title>
+    <script>featuresJS.js</script>
 </head>
 <body>
     <div class = "navbar">
-        <a href="HOMEPAGELINK">FastStat</a>
-        <a href="VIEWROSTERLINK">View Roster</a>
-        <a href="ACCOUNTLINK">Account</a>
-        <img src="PROFILEPICTURE" alt = "Profile Picture">
+        <a class ="icon" href="home.html">FastStat</a>
+        <a class ="account" href="logIn.html">Log Out</a> 
+        <a class ="account" href="features.html">Results</a>
+        <a class ="account" href="enterTime.html">Enter Time</a>
+        <a class ="account" href="home.html">Home</a>
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt = "Profile Picture">
     </div>
+
+    <div class = "mainpg">
+        <h1>Enter Time</h1>
+        <h2>Event</h2>
+        <label for="cars"></label>
+            <select id="events" name="events">
+            <option value="null">Choose an Event</option>
+            <option value="50 Freestyle">50 Freestyle</option>
+            <option value="100 Freestyle">100 Freestyle</option>
+            <option value="200 Freestyle">200 Freestyle</option>
+            <option value="500 Freestyle">500 Freestyle</option>
+            <option value="1650 Freestyle">1650 Freestyle</option>
+            <option value="100 Backstroke">100 Backstroke</option>
+            <option value="200 Backstroke">200 Backstroke</option>
+            <option value="100 Breaststroke">100 Breaststroke</option>
+            <option value="200 Breaststroke">200 Breaststroke</option>
+            <option value="100 Butterfly">100 Butterfly</option>
+            <option value="200 Butterfly">200 Butterfly</option>
+            <option value="200 Individual Medley">200 Individual Medley</option>
+            <option value="400 Individual Medley">400 Individual Medley</option>
+        </select>
+        <br>
+        <h2>Time</h2>
+        <input type = "number" step="2">
+        <br>
+        <h2>Date</h2>
+        <input type = "date">
+        <p>How did you feel about your race? What went well? What didn't go well?
+            How did you feel before the race? How did you feel during the race?
+            How did you feel after the race?
+        </p>
+        <textarea rows = 40px cols = 5px class = "textBox"></textarea>
+    </div>
+    <button class= "submit" type="button">Submit</button>
 </body>
 </html>

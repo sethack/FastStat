@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 let dict = {}
 const players = new Map();
+=======
+
+>>>>>>> 29cebb4b800af58b79eadbbf1bbd6679cefc20f4
 document.addEventListener('DOMContentLoaded', () => {
  console.log(document)
  addplayer()
@@ -51,6 +55,7 @@ function removeplayer(){
     }
   })
 }
+<<<<<<< HEAD
 function createaccounttojson(username,password){ // give a username and a password
     dict[username] = password  // hopefully like the password value can be an object?
 }
@@ -91,3 +96,22 @@ formWidget.addEventListener("click", () => {
 });
 
 })
+=======
+
+function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
+                                                      // would it be easier if we have a map wich points to this obj?
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+  this.times = times;
+
+
+}
+function coach(name,username,email,password){
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+}
+>>>>>>> 29cebb4b800af58b79eadbbf1bbd6679cefc20f4
