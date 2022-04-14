@@ -70,3 +70,55 @@ function coach(name,username,email,password){
   this.email = email;
   this.password = password;
 }
+
+/* 
+let swimmer = {
+  nemoFish: {
+    password: "hello",
+    name: "Nemo",
+    email: "luckyfin@fish.com",
+    entries: {
+      1:{
+        form: "Freestyle",
+        distance: "100m",
+        date: "3/7/2022", 
+        time: "144.0",
+        comment: "Touched the butt"
+      },
+      2:{
+        form: "Freestyle",
+        distance: "200m",
+        date: "3/8/2022", 
+        time: "144.0",
+        comment: "Touched the butt"
+      },
+      3:{
+        form: "Freestyle",
+        distance: "100m",
+        date: "3/9/2022", 
+        time: "164.0",
+        comment: "Touched the butt"
+      }
+    }
+  }
+}
+
+let graphPoints = [
+  ['1/1/2022', 29.9],
+  ['1/2/2022', 71.5],
+  ['1/3/2022', 106.4],
+  ['2/6/2022', 129.2],
+  ['3/7/2022', 144.0],
+  ['4/8/2022', 176.0]
+]
+
+function swimData(username, style, distance) {
+  let swim = swimmer[username];
+  for(num in swim.entries){
+    if(swim.entries[num].form === style && swim.entries[num].distance === distance){
+      console.log([swim.entries[num].date, swim.entries[num].time])
+      graphPoints.push([swim.entries[num].date, swim.entries[num].time])
+    }
+  }
+  return graphPoints;
+} */
