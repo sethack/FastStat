@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
  }
 
 
-JSC.Chart('myChart', {
+/* JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
     legend_visible: false,
@@ -26,7 +26,7 @@ JSC.Chart('myChart', {
         ]
       }
     ]
-});
+}); */
 
 function addplayer (){
   const adding = document.getElementById("addtoroster");
@@ -142,17 +142,17 @@ let swimmer = {
   }
 }
 
-let graphPoints = [];
 
-function swimData(username, races) {
+
+function swimData(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       console.log([swim.entries[num].date, swim.entries[num].time])
-      graphPoints.push([swim.entries[num].date, swim.entries[num].time])
+      points.push([swim.entries[num].date, swim.entries[num].time])
     }
   }
-  return graphPoints;
+  return points;
 }
 
 function swimTable(username, races) {
@@ -170,4 +170,41 @@ function swimTable(username, races) {
   }
   html += '</table>';
   document.getElementById("statTable").innerHTML = html;
+}
+
+function swimGraph(username, point, event){
+  if(document.querySelector("canvas") != null){
+    console.log("remove");
+    let chart = document.querySelector("canvas");
+    chart.parentNode.removeChild(chart);
+  }
+  html = "<canvas id='myChart'></canvas>";
+document.getElementById("chart").innerHTML = html;
+  JSC.Chart('myChart', {
+    type: 'line',
+    title_label_text: event,
+    legend_visible: false,
+    xAxis: { scale_type: 'time' },
+    series: [
+      { 
+        name: 'Date',
+        points: point
+      }
+    ]
+});
+
+}
+var username1 = "nemoFish";
+if(document.getElementById("eventsResults") != null){
+  var username1 = "nemoFish";
+  let events = document.getElementById("eventsResults");
+  console.log(events.value);
+  events.addEventListener("change", () => { 
+    console.log("yay");
+    let graphPoints = [];
+    graphPoints = swimData(username1, events.value, graphPoints);
+    console.log(graphPoints);
+    swimTable(username1, events.value);
+    swimGraph(username1, graphPoints, events.value)
+  });
 }
