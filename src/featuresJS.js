@@ -1,12 +1,5 @@
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
- console.log(document)
- if(document.getElementById("addtoroster") != null){
-  addplayer()
- }
- if(document.getElementById("remove") != null){
-  removeplayer()
- }
 
 
 /* JSC.Chart('myChart', {
@@ -28,36 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ]
 }); */
-
-function addplayer (){
-  const adding = document.getElementById("addtoroster");
-  adding.addEventListener('click', () => {
-    let player = prompt("Input player");
-    console.log(player)
-    //Search for player in database
-    //Add that player to the players dictionary !!
-    
-    //If false return error
-    //Else add the player to the table
-  })
-}
-function removeplayer(){
-
-  const removing = document.getElementById("remove");
-  removing.addEventListener('click', ()=>{
-    let player = prompt("Input player");
-    if(players.has(player)){
-      alert("already have player in table!")
-        }
-    else{
-      console.log("searching......") // look for the players in this data base ig?
-    }
-  })
-}
-
-function createaccounttojson(username,password){ // give a username and a password
-    dict[username] = password  // hopefully like the password value can be an object?
-}
 
 /***Create Account HTML functions***/
 
