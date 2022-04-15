@@ -1,9 +1,9 @@
 #statTable{   
     flex: auto 1 100%;
 }
-th, td{
+/* th, td{
     border: 1px solid black;
-}
+} */
 #links{    
     border: 1px solid black;    
     flex: auto 1 100%;
@@ -54,6 +54,16 @@ th, td{
 }
 .navbar a:hover, .sidebar a:hover{
     color: Black;
+}
+table{
+    width: 77%;
+}
+table, tr, td {
+    border: 1px solid;
+    border-color: white;
+}
+.two{
+    background-color: lightblue;
 }
 /* #enterTime{
 =======
