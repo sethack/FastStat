@@ -1,16 +1,14 @@
-<<<<<<< HEAD
-let dict = {}
-const players = new Map();
-=======
-
->>>>>>> 29cebb4b800af58b79eadbbf1bbd6679cefc20f4
 document.addEventListener('DOMContentLoaded', () => {
  console.log(document)
- addplayer()
- removeplayer()
+ if(document.getElementById("addtoroster") != null){
+  addplayer()
+ }
+ if(document.getElementById("remove") != null){
+  removeplayer()
+ }
 
 
-JSC.Chart('myChart', {
+/* JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
     legend_visible: false,
@@ -20,7 +18,7 @@ JSC.Chart('myChart', {
         name: 'Date',
         points: [
           ['1/1/2022', 29.9],
-          ['1/2/2022', 71.5],s
+          ['1/2/2022', 71.5],
           ['1/3/2022', 106.4],
           ['2/6/2022', 129.2],
           ['3/7/2022', 144.0],
@@ -28,7 +26,7 @@ JSC.Chart('myChart', {
         ]
       }
     ]
-});
+}); */
 
 function addplayer (){
   const adding = document.getElementById("addtoroster");
@@ -55,7 +53,7 @@ function removeplayer(){
     }
   })
 }
-<<<<<<< HEAD
+
 function createaccounttojson(username,password){ // give a username and a password
     dict[username] = password  // hopefully like the password value can be an object?
 }
@@ -96,7 +94,7 @@ formWidget.addEventListener("click", () => {
 });
 
 })
-=======
+
 
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
                                                       // would it be easier if we have a map wich points to this obj?
@@ -114,9 +112,8 @@ function coach(name,username,email,password){
   this.email = email;
   this.password = password;
 }
-<<<<<<< HEAD
 
-/* 
+
 let swimmer = {
   nemoFish: {
     password: "hello",
@@ -124,22 +121,19 @@ let swimmer = {
     email: "luckyfin@fish.com",
     entries: {
       1:{
-        form: "Freestyle",
-        distance: "100m",
+        race: "100 Freestyle",
         date: "3/7/2022", 
         time: "144.0",
         comment: "Touched the butt"
       },
       2:{
-        form: "Freestyle",
-        distance: "200m",
+        race: "100 Freestyle",
         date: "3/8/2022", 
         time: "144.0",
         comment: "Touched the butt"
       },
       3:{
-        form: "Freestyle",
-        distance: "100m",
+        race: "100 Freestyle",
         date: "3/9/2022", 
         time: "164.0",
         comment: "Touched the butt"
@@ -148,25 +142,69 @@ let swimmer = {
   }
 }
 
-let graphPoints = [
-  ['1/1/2022', 29.9],
-  ['1/2/2022', 71.5],
-  ['1/3/2022', 106.4],
-  ['2/6/2022', 129.2],
-  ['3/7/2022', 144.0],
-  ['4/8/2022', 176.0]
-]
 
-function swimData(username, style, distance) {
+
+function swimData(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
-    if(swim.entries[num].form === style && swim.entries[num].distance === distance){
+    if(swim.entries[num].race === races){
       console.log([swim.entries[num].date, swim.entries[num].time])
-      graphPoints.push([swim.entries[num].date, swim.entries[num].time])
+      points.push([swim.entries[num].date, swim.entries[num].time])
     }
   }
-  return graphPoints;
-} */
-=======
->>>>>>> 29cebb4b800af58b79eadbbf1bbd6679cefc20f4
->>>>>>> 3061063be4ae645737b1595d72782a6a0bb75203
+  return points;
+}
+
+function swimTable(username, races) {
+  let swim = swimmer[username];
+  html = '<table><tr><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
+  for(num in swim.entries){
+    if(swim.entries[num].race === races){
+      html += '<tr>';
+      html += '<th>' + swim.entries[num].date + '</th>';
+      html += '<td>' + swim.entries[num].race + '</td>';
+      html += '<td>' + swim.entries[num].time + '</td>';
+      html += '<td>' + swim.entries[num].comment + '</td>';
+      html += '</tr>';
+    }
+  }
+  html += '</table>';
+  document.getElementById("statTable").innerHTML = html;
+}
+
+function swimGraph(username, point, event){
+  if(document.querySelector("canvas") != null){
+    console.log("remove");
+    let chart = document.querySelector("canvas");
+    chart.parentNode.removeChild(chart);
+  }
+  html = "<canvas id='myChart'></canvas>";
+document.getElementById("chart").innerHTML = html;
+  JSC.Chart('myChart', {
+    type: 'line',
+    title_label_text: event,
+    legend_visible: false,
+    xAxis: { scale_type: 'time' },
+    series: [
+      { 
+        name: 'Date',
+        points: point
+      }
+    ]
+});
+
+}
+var username1 = "nemoFish";
+if(document.getElementById("eventsResults") != null){
+  var username1 = "nemoFish";
+  let events = document.getElementById("eventsResults");
+  console.log(events.value);
+  events.addEventListener("change", () => { 
+    console.log("yay");
+    let graphPoints = [];
+    graphPoints = swimData(username1, events.value, graphPoints);
+    console.log(graphPoints);
+    swimTable(username1, events.value);
+    swimGraph(username1, graphPoints, events.value)
+  });
+}
