@@ -1,3 +1,4 @@
+let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
  console.log(document)
  if(document.getElementById("addtoroster") != null){
