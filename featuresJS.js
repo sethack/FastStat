@@ -157,7 +157,7 @@ function swimData(username, races, points) {
 
 function swimTable(username, races) {
   let swim = swimmer[username];
-  html = '<table><tr><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
+  html = '<table><tr class = "two"><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       html += '<tr>';
