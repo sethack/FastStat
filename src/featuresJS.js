@@ -23,42 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
 }); */
 
 /***Create Account HTML functions***/
-
-//form validator (name, username, and email are required elements so only profile type and password need to be checked)
-let profType = false;
-let profTypeWidget = document.querySelector("select");
-profTypeWidget.addEventListener("input", () => { //check that radio is checked
-  if(profTypeWidget.checked){
-    profType = true;
+if(document.querySelector("#caButton") !== null){
+  let formWidget = document.querySelector("#caButton");
+  formWidget.addEventListener("click", addPlayer); 
   }
-});
+  });
 
-let password = false;
-let passwordWidget = document.querySelector("#password");
-let cPasswordWidget = document.querySelector("#cPassword");
-cPasswordWidget.addEventListener("input", () => { //check that password is filled in and matches
-  if(cPasswordWidget.value.length !== 0 && cPasswordWidget.value === passwordWidget.value){
-    password = true;
-  }
-});
-
-let nameWidget = document.querySelector("#name");
-let usernameWidget = document.querySelector("#username");
-let emailWidget = document.querySelector("#email"); 
-let formWidget = document.querySelector("#caButton");
-formWidget.addEventListener("click", () => {
-  if (!profType || !password) {
-    event.preventDefault();
-  }
-  players.set(usernameWidget.value, {
-    name: nameWidget.value, 
-    profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-    email: emailWidget.value,
-    password: passwordWidget.value});
-});
-
-})
-
+  function addPlayer(){
+    let profTypeWidget = document.querySelector("select");
+    let passwordWidget = document.querySelector("#password");
+    let nameWidget = document.querySelector("#name");
+    let usernameWidget = document.querySelector("#username");
+    let emailWidget = document.querySelector("#email"); 
+    // if (!profType || !password) {
+      //   event.preventDefault();
+      // }
+      players.set(usernameWidget.value, {
+        name: nameWidget.value, 
+        profileType: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+        email: emailWidget.value,
+        password: passwordWidget.value});
+      }
 
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
                                                       // would it be easier if we have a map wich points to this obj?
