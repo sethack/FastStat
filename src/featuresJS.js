@@ -118,10 +118,13 @@ function swimTable(username, races) {
     }
   }
   html += '</table>';
-  document.getElementById("statTable").innerHTML = html;
+  if(document.getElementById("statTable") !=null){
+    document.getElementById("statTable").innerHTML = html;
+
+  }
 }
 
-function swimGraph(username, point, event){
+/* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
     console.log("remove");
     let chart = document.querySelector("canvas");
@@ -140,9 +143,9 @@ document.getElementById("chart").innerHTML = html;
         points: point
       }
     ]
-});
+}); */
 
-}
+//}
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
@@ -154,6 +157,6 @@ if(document.getElementById("eventsResults") != null){
     graphPoints = swimData(username1, events.value, graphPoints);
     console.log(graphPoints);
     swimTable(username1, events.value);
-    swimGraph(username1, graphPoints, events.value)
+    // swimGraph(username1, graphPoints, events.value)
   });
 }
