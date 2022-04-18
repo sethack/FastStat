@@ -4,10 +4,10 @@
 }
 .navbar img{
     border-radius: 50%;
-    width: 20px;
+    width: 40px;
     float: right;
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
     text-decoration: none;
     font-size: 17px; 
 }
@@ -15,37 +15,75 @@
     position:relative;
     float:right;
     text-align: center;
-    top: 12px;
+    top: 28px;
+    right: 10px;
     text-decoration: none;
 }
-.navbar a{
-    color:white;
+.icon{
+    color: white;
+    float: left;
+    text-align: center;
+    padding: 20px 16px;
+    text-decoration: none;
+    font-size: 40px;
+}
+.account{
+    color: white;
     float: right;
     text-align: center;
-    padding: 14px 16px;
+    padding: 24px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 24px;
 }
-.navbar a:hover, .sidebar p:hover{
-    color: black;
+.navbar a:hover, .sidebar a:hover{
+    color: Black;
 }
-a.icon{
-    float: left;
-}
-.sidebar{
+/* .sidebar{
     overflow: hidden;
     padding:10px;
     height: 1000px;
     background-color: lightgrey;
     width:20%;
     float: left;
+} */
+/* .sidebar a {
+    color: white;
+    float: center;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: 24px;
+    position: absolute;
+    top: 90px;
+    left: 20;
 }
+.sidebar .results{
+    position: absolute;
+    top: 130px;
+    left: 20px;
+} */
 .mainpg{
     right:1%;
     transform: translateX(1%);
 }
+.mainpg p{
+    font-size: 20px;
+}
+.textBox{
+    padding: 10px;
+    float: center;
+    width: 97%;
+}
+.submit{
+    padding: 10px;
+    float: right;
+    scale: 10%;
+    width:10%;
+    height: auto;
+}
+
+
 table{
-    width: 77%;
+    width: 80%;
 }
 table, tr, td {
     border: 1px solid;
