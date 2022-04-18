@@ -22,6 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
 }); */
 
+/* var xValues = [50,60,70,80,90,100,110,120,130,140,150];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      //backgroundColor: "rgba(0,0,0,1.0)",
+      borderColor: "rgba(0,0,0,0.1)",
+      data: yValues
+    }]
+  }
+}); */
+
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
@@ -72,19 +87,19 @@ let swimmer = {
       1:{
         race: "100 Freestyle",
         date: "3/7/2022", 
-        time: "144.0",
+        time: "144",
         comment: "Touched the butt"
       },
       2:{
         race: "100 Freestyle",
         date: "3/8/2022", 
-        time: "144.0",
+        time: "144",
         comment: "Touched the butt"
       },
       3:{
-        race: "100 Freestyle",
+        race: "200 Freestyle",
         date: "3/9/2022", 
-        time: "164.0",
+        time: "164",
         comment: "Touched the butt"
       }
     }
@@ -93,12 +108,35 @@ let swimmer = {
 
 
 
-function swimData(username, races, points) {
+function swimDates(username, races, points) {
   let swim = swimmer[username];
+  console.log("dates");
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      console.log([swim.entries[num].date, swim.entries[num].time])
-      points.push([swim.entries[num].date, swim.entries[num].time])
+      console.log([swim.entries[num].date])
+      points.push(swim.entries[num].date)
+    }
+  }
+  return points;
+}
+
+function swimTimes(username, races, points) {
+  let swim = swimmer[username];
+  console.log("times");
+  let minutes = "";
+  let seconds = 0;
+  for(num in swim.entries){
+    if(swim.entries[num].race === races){
+      console.log([swim.entries[num].time])
+      minutes = swim.entries[num].time % 60;
+      console.log(minutes);
+      seconds = (swim.entries[num].time - minutes*60);
+      
+      //points.push([minutes + seconds])
+      minutes = swim.entries[num].time
+      seconds = parseInt(minutes);
+      console.log(seconds);
+      points.push(parseInt(swim.entries[num].time))
     }
   }
   return points;
@@ -106,7 +144,7 @@ function swimData(username, races, points) {
 
 function swimTable(username, races) {
   let swim = swimmer[username];
-  html = '<table id = "statTable"><tr class = "two"><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
+  html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       html += '<tr>';
@@ -124,28 +162,40 @@ function swimTable(username, races) {
   }
 }
 
-/* function swimGraph(username, point, event){
-  if(document.querySelector("canvas") != null){
+ function swimGraph(username, dates, times, event){
+  /* if(document.querySelector("canvas") != null){
     console.log("remove");
-    let chart = document.querySelector("canvas");
-    chart.parentNode.removeChild(chart);
-  }
-  html = "<canvas id='myChart'></canvas>";
-document.getElementById("chart").innerHTML = html;
-  JSC.Chart('myChart', {
-    type: 'line',
-    title_label_text: event,
-    legend_visible: false,
-    xAxis: { scale_type: 'time' },
-    series: [
-      { 
-        name: 'Date',
-        points: point
-      }
-    ]
-}); */
+    let chart = document.querySelectorAll("canvas");
 
-//}
+    chart[chart.length -1].style.display = "none";
+  } */
+  console.log(dates);
+  console.log(times);
+  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
+  document.getElementById("chart").innerHTML = html;
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: dates,
+      datasets: [{
+        label: "Times",
+        borderColor: "black",
+        data: times,
+        fill: false
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        position: "top",
+        text: event + "Progression",
+        fontSize: 18,
+        fontColor: "#111"
+      }
+    }
+  });
+}
+
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
@@ -153,10 +203,12 @@ if(document.getElementById("eventsResults") != null){
   console.log(events.value);
   events.addEventListener("change", () => { 
     console.log("yay");
-    let graphPoints = [];
-    graphPoints = swimData(username1, events.value, graphPoints);
-    console.log(graphPoints);
+    let datePoints = [];
+    let timePoints = [];
+    datePoints = swimDates(username1, events.value, datePoints);
+    timePoints = swimTimes(username1, events.value, timePoints);
+    //console.log(graphPoints);
     swimTable(username1, events.value);
-    // swimGraph(username1, graphPoints, events.value)
+    swimGraph(username1, datePoints, timePoints, events.value)
   });
 }
