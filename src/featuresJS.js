@@ -1,7 +1,9 @@
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-
-
+  if(document.querySelector("#addtoroster") !== null){
+    console.log("exists")
+    putplayer();
+  }
 /* JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
@@ -41,7 +43,9 @@ let emailWidget = document.querySelector("#email");
     profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
     email: emailWidget.value,
     password: passwordWidget.value});
+    console.log(players); 
   }
+  console.log(players); // if I forget to remove this feel free to delete
 });
 
 
@@ -160,3 +164,49 @@ if(document.getElementById("eventsResults") != null){
     // swimGraph(username1, graphPoints, events.value)
   });
 }
+  function putplayer(){
+    let person = document.getElementById("addtoroster")
+    console.log(person)
+    person.addEventListener("click", () =>{
+      console.log(players)
+      console.log("innner")
+        let input = prompt("Enter player username");
+        if(players.has(input)){
+          var row =  document.getElementById("tbl").insertRow(ammountofplayers);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = players.get(input.name)
+          cell2.innerHTML = players.get(input.name)  // Change this value to an actual statistic
+          ammountofplayers++;
+          //add exception for if player doesent have best race data
+        }
+        else{
+          alert("Username not found in database!")
+        }
+  })
+}
+function removeplayer(){
+  let table = document.getElementById("tbl")
+  let person = document.getElementById("remove")
+  person.addEventListener("click", ()=>{
+    let input = prompt("Enter player username");
+    holder = findinput(input,table);
+    if(holder != false){  // players in table exist 
+      document.getElementById("tbl").deleteRow(r);
+      //remove player
+    }
+    else{
+      alert("Player not found in table");
+    }
+  })
+  function findinput(input,table){
+    for (var r = 0, n = table.rows.length; r < n; r++) {
+      for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
+          if(table.rows[r].cells[c].innerHTML === input){
+            return(r);
+          }
+      }
+    }
+      return false;
+    }
+  }
