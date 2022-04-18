@@ -1,8 +1,20 @@
 let players = new Map();
+players.set("james", {
+  name: "james",
+  profile: "cool",
+  email: "jamesgmail",
+  password: "jj"});
+  players.set("aj", {
+    name: "aj",
+    profile: "cool",
+    email: "jamesgmail",
+    password: "jj"});
 document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#addtoroster") !== null){
-    console.log("exists")
     putplayer();
+  if(document.querySelector("#remove")!== null){
+    removeplayer();
+  }
   }
 /* JSC.Chart('myChart', {
     type: 'line',
@@ -171,42 +183,41 @@ if(document.getElementById("eventsResults") != null){
       console.log(players)
       console.log("innner")
         let input = prompt("Enter player username");
-        if(players.has(input)){
-          var row =  document.getElementById("tbl").insertRow(ammountofplayers);
+        table = document.getElementById("tbl")
+        if(players.has(input) && !(findinput(input,table))){
+          var row =  table.insertRow(1);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
-          cell1.innerHTML = players.get(input.name)
-          cell2.innerHTML = players.get(input.name)  // Change this value to an actual statistic
-          ammountofplayers++;
-          //add exception for if player doesent have best race data
+          cell1.innerHTML = players.get(input).name
+          cell2.innerHTML = players.get(input).name  // Change this value to an actual statistic
+          //add exception for if player doesent have best race data, unless this is not a problem. 
         }
         else{
-          alert("Username not found in database!")
+          alert("Username not found in database, or this player already exists on your table!")
         }
   })
 }
 function removeplayer(){
   let table = document.getElementById("tbl")
-  let person = document.getElementById("remove")
-  person.addEventListener("click", ()=>{
+  let rmv = document.getElementById("remove")
+  console.log(rmv)
+  rmv.addEventListener("click", ()=>{
     let input = prompt("Enter player username");
     holder = findinput(input,table);
     if(holder != false){  // players in table exist 
-      document.getElementById("tbl").deleteRow(r);
+      document.getElementById("tbl").deleteRow(holder);
       //remove player
     }
     else{
       alert("Player not found in table");
     }
   })
-  function findinput(input,table){
-    for (var r = 0, n = table.rows.length; r < n; r++) {
-      for (var c = 0, m = table.rows[r].cells.length; c < m; c++) {
-          if(table.rows[r].cells[c].innerHTML === input){
-            return(r);
-          }
+}
+function findinput(input,table){
+  for(var r = 0, n = table.rows.length; r < n; r++) {
+      if(table.rows[r].cells[0].innerHTML === input){
+        return(r);
       }
     }
-      return false;
-    }
-  }
+  return false;
+}
