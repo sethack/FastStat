@@ -3,19 +3,36 @@ players.set("james", {
   name: "james",
   profile: "cool",
   email: "jamesgmail",
-  password: "jj"});
-  players.set("aj", {
-    name: "aj",
-    profile: "cool",
-    email: "jamesgmail",
-    password: "jj"});
+  password: "jj",
+  entries: {
+    1:{
+      race: "100 Freestyle",
+      date: "3/7/2022", 
+      time: "144.0",
+      comment: "Touched the butt"
+    },
+    2:{
+      race: "100 Freestyle",
+      date: "3/8/2022", 
+      time: "144.0",
+      comment: "Touched the butt"
+    },
+    3:{
+      race: "100 Freestyle",
+      date: "3/9/2022", 
+      time: "164.0",
+      comment: "Touched the butt"
+    }
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
-  if(document.querySelector("#remove")!== null){
+  if(document.querySelector("#remove") !== null){
     removeplayer();
   }
-  }
+}
 /* JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
@@ -35,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ]
 }); */
-
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
@@ -59,8 +75,6 @@ let emailWidget = document.querySelector("#email");
   }
   console.log(players); // if I forget to remove this feel free to delete
 });
-
-
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
                                                       // would it be easier if we have a map wich points to this obj?
   this.name = name;
@@ -106,9 +120,6 @@ let swimmer = {
     }
   }
 }
-
-
-
 function swimData(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
@@ -119,7 +130,6 @@ function swimData(username, races, points) {
   }
   return points;
 }
-
 function swimTable(username, races) {
   let swim = swimmer[username];
   html = '<table id = "statTable"><tr class = "two"><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
@@ -136,10 +146,8 @@ function swimTable(username, races) {
   html += '</table>';
   if(document.getElementById("statTable") !=null){
     document.getElementById("statTable").innerHTML = html;
-
   }
 }
-
 /* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
     console.log("remove");
@@ -160,7 +168,6 @@ document.getElementById("chart").innerHTML = html;
       }
     ]
 }); */
-
 //}
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
@@ -189,13 +196,36 @@ if(document.getElementById("eventsResults") != null){
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
           cell1.innerHTML = players.get(input).name 
-          cell2.innerHTML = players.get(input).name  // Change this value to the best event statistic 
+          bstevent = findbestevent(input);
+          cell2.innerHTML = bstevent  // Change this value to the best event statistic 
           //add exception for if player doesent have best race data, unless this is not a problem. 
         }
         else{
           alert("Username not found in database, or this player already exists on your table!")
         }
   })
+}
+function findbestevent(usrname){
+  try{
+    bestevent = null;
+    x = 0;
+    console.log("in")
+    console.log(players.get(usrname).entries[1].time)
+    length = Object.keys(players.get(usrname).entries).length;
+    for(let i = 1;i<=length;i++){
+      console.log("infor")
+      z = parseFloat(players.get(usrname).entries[i].time)
+      console.log(z)
+      if(z>x){
+      bestevent = players.get(usrname).entries[i].race;
+      }
+    }
+    return bestevent;
+  }
+  catch (error){
+    alert("player has no race data!");
+    return null;
+  }
 }
 function removeplayer(){
   let table = document.getElementById("tbl")
