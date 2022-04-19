@@ -183,41 +183,27 @@ if(document.getElementById("eventsResults") != null){
     // swimGraph(username1, graphPoints, events.value)
   });
 }
-  function putplayer(){
-    let person = document.getElementById("addtoroster")
-    console.log(person)
-    person.addEventListener("click", () =>{
-      console.log(players)
-      console.log("innner")
-        let input = prompt("Enter player username");
-        table = document.getElementById("tbl")
-        if(players.has(input) && !(findinput(input,table))){
-          var row =  table.insertRow(1);
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          cell1.innerHTML = players.get(input).name 
-          bstevent = findbestevent(input);
-          cell2.innerHTML = bstevent  // Change this value to the best event statistic 
-          //add exception for if player doesent have best race data, unless this is not a problem. 
-        }
-        else{
-          alert("Username not found in database, or this player already exists on your table!")
-        }
+function putplayer(){
+  document.getElementById("addtoroster").addEventListener("click", () =>{
+      let input = prompt("Enter player username");
+      table = document.getElementById("tbl");
+      if(players.has(input) && !(findinput(input,table))){
+        var row =  table.insertRow(1);
+        row.insertCell(0).innerHTML = players.get(input).name;
+        row.insertCell(1).innerHTML = findbestevent(input);
+      }
+      else{
+        alert("Username not found in database, or this player already exists on your table!")
+      }
   })
 }
 function findbestevent(usrname){
   try{
     bestevent = null;
     x = 0;
-    console.log("in")
-    console.log(players.get(usrname).entries[1].time)
-    length = Object.keys(players.get(usrname).entries).length;
-    for(let i = 1;i<=length;i++){
-      console.log("infor")
-      z = parseFloat(players.get(usrname).entries[i].time)
-      console.log(z)
-      if(z>x){
-      bestevent = players.get(usrname).entries[i].race;
+    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
+      if(parseFloat(players.get(usrname).entries[i].time)>x){
+        bestevent = players.get(usrname).entries[i].race;
       }
     }
     return bestevent;
@@ -229,12 +215,11 @@ function findbestevent(usrname){
 }
 function removeplayer(){
   let table = document.getElementById("tbl")
-  let rmv = document.getElementById("remove")
-  rmv.addEventListener("click", ()=>{
+  document.getElementById("remove").addEventListener("click", ()=>{
     let input = prompt("Enter player username");
     holder = findinput(input,table);
     if(holder != false){  // players in table exist 
-      document.getElementById("tbl").deleteRow(holder);
+      table.deleteRow(holder);
       //remove player
     }
     else{
