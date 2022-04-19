@@ -1,31 +1,4 @@
 let players = new Map();
-players.set("james", {
-  name: "james",
-  profile: "cool",
-  email: "jamesgmail",
-  password: "jj",
-  entries: {
-    1:{
-      race: "100 Freestyle",
-      date: "3/7/2022", 
-      time: "144.0",
-      comment: "Touched the butt"
-    },
-    2:{
-      race: "100 Freestyle",
-      date: "3/8/2022", 
-      time: "144.0",
-      comment: "Touched the butt"
-    },
-    3:{
-      race: "100 Freestyle",
-      date: "3/9/2022", 
-      time: "164.0",
-      comment: "Touched the butt"
-    }
-  }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
