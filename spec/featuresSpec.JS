@@ -75,10 +75,7 @@ describe("swimTable", () => {
             }
           }
         }
-      }
-      
-      
-      
+      } 
     it("No table initially", () => {
         expect(document.querySelector("#statTable") === null).toBe(true);
     });

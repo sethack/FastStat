@@ -188,8 +188,8 @@ if(document.getElementById("eventsResults") != null){
           var row =  table.insertRow(1);
           var cell1 = row.insertCell(0);
           var cell2 = row.insertCell(1);
-          cell1.innerHTML = players.get(input).name
-          cell2.innerHTML = players.get(input).name  // Change this value to an actual statistic
+          cell1.innerHTML = players.get(input).name 
+          cell2.innerHTML = players.get(input).name  // Change this value to the best event statistic 
           //add exception for if player doesent have best race data, unless this is not a problem. 
         }
         else{
@@ -200,7 +200,6 @@ if(document.getElementById("eventsResults") != null){
 function removeplayer(){
   let table = document.getElementById("tbl")
   let rmv = document.getElementById("remove")
-  console.log(rmv)
   rmv.addEventListener("click", ()=>{
     let input = prompt("Enter player username");
     holder = findinput(input,table);
