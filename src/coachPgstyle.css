@@ -19,9 +19,9 @@
     right: 10px;
     text-decoration: none;
 }
-.navbar a,.navbar p{
-    color:white;
-    float: right;
+.icon{
+    color: white;
+    float: left;
     text-align: center;
     padding: 20px 16px;
     text-decoration: none;
@@ -38,13 +38,7 @@
 .navbar a:hover, .sidebar a:hover{
     color: Black;
 }
-.mainpg{
-    right:1%;
-    transform: translateX(1%);
-}
-.mainpg p{
-    font-size: 20px;
-}
+
 .textBox{
     padding: 10px;
     float: center;
