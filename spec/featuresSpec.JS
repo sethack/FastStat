@@ -43,7 +43,6 @@ describe("swimTimes", () => {
 });
 
 describe("swimTable", () => {
-<<<<<<< HEAD
     let table = swimTable("nemoFish", "100 Freestyle");
     it("html table is formed", () => {
         expect(table != null).toBe(true);
@@ -56,37 +55,3 @@ describe("swimTable", () => {
 });
 
 });
-=======
-    let swimmer = {
-        nemoFish: {
-          password: "hello",
-          name: "Nemo",
-          email: "luckyfin@fish.com",
-          entries: {
-            1:{
-              race: "100 Freestyle",
-              date: "3/7/2022", 
-              time: "144.0",
-              comment: "Touched the butt"
-            },
-            2:{
-              race: "100 Freestyle",
-              date: "3/8/2022", 
-              time: "144.0",
-              comment: "Touched the butt"
-            },
-            3:{
-              race: "100 Freestyle",
-              date: "3/9/2022", 
-              time: "164.0",
-              comment: "Touched the butt"
-            }
-          }
-        }
-      } 
-    it("No table initially", () => {
-        expect(document.querySelector("#statTable") === null).toBe(true);
-    });
-});
-
->>>>>>> c272134792996fb3dec902985e8596f1e86babc2
