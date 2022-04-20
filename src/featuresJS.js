@@ -104,6 +104,7 @@ function swimData(username, races, points) {
 function swimTable(username, races) {
   let swim = swimmer[username];
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
+  let count = 0;
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       html += '<tr>';
@@ -112,7 +113,13 @@ function swimTable(username, races) {
       html += '<td>' + swim.entries[num].time + '</td>';
       html += '<td>' + swim.entries[num].comment + '</td>';
       html += '</tr>';
+      count ++;
     }
+  }
+  if(count === 0){
+    html += '<tr>';
+    html += '<td colspan = "4" style = "font-size: 16pt">No Recorded Times For '+ races + '</td>';
+    html += '</tr>';
   }
   html += '</table>';
   if(document.getElementById("statTable") !=null){
@@ -120,6 +127,7 @@ function swimTable(username, races) {
   }
   return html;
 }
+<<<<<<< HEAD
 /* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
     console.log("remove");
@@ -127,6 +135,10 @@ function swimTable(username, races) {
 
     chart[chart.length -1].style.display = "none";
   } */
+=======
+
+ function swimGraph(username, dates, times, event){
+>>>>>>> cody
   console.log(dates);
   console.log(times);
   html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
