@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
+  players.set(
+    'nemoFish', {
+      password: "hello",
+      name: "Nemo",
+      email: "luckyfin@fish.com"
+    })
 }
 /* JSC.Chart('myChart', {
     type: 'line',
@@ -139,10 +145,10 @@ if(document.getElementById("eventsResults") != null){
 }
 function putplayer(){
   document.getElementById("addtoroster").addEventListener("click", () =>{
-      let input = prompt("Enter player username");
+      input = prompt("Enter player username");
       table = document.getElementById("tbl");
       if(players.has(input) && !(findinput(input,table))){
-        var row =  table.insertRow(1);
+        var row = table.insertRow(1);
         row.insertCell(0).innerHTML = players.get(input).name;
         row.insertCell(1).innerHTML = findbestevent(input);
       }

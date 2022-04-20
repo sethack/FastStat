@@ -80,3 +80,4 @@ describe("swimTable", () => {
         expect(document.querySelector("#statTable") === null).toBe(true);
     });
 });
+
