@@ -176,7 +176,7 @@ function putplayer(){
         console.log("in");
         var row = table.insertRow(1);
         row.insertCell(0).innerHTML = players.get(input).name;
-        row.insertCell(1).innerHTML = findbestevent(input);
+        //row.insertCell(1).innerHTML = findbestevent(input);
       }
       else{
         alert("Username not found in database, or this player already exists on your table!")
