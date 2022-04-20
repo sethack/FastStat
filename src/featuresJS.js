@@ -127,7 +127,6 @@ function swimTable(username, races) {
   }
   return html;
 }
-<<<<<<< HEAD
 /* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
     console.log("remove");
@@ -135,10 +134,6 @@ function swimTable(username, races) {
 
     chart[chart.length -1].style.display = "none";
   } */
-=======
-
- function swimGraph(username, dates, times, event){
->>>>>>> cody
   console.log(dates);
   console.log(times);
   html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
@@ -225,8 +220,8 @@ function removeplayer(){
     }
   })
 }
-function findinput(input,table){
-  for(var r = 0, n = table.rows.length; r < n; r++) {
+function findinput(input,table){    // queries for names not usernames 
+  for(var r = 0, n = table.rows.length; r < n; r++)   {
       if(table.rows[r].cells[0].innerHTML === input){
         return(r);
       }
