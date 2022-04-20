@@ -160,6 +160,7 @@ function swimTable(username, races) {
     document.getElementById("statTable").innerHTML = html;
 
   }
+  return html;
 }
 
  function swimGraph(username, dates, times, event){
