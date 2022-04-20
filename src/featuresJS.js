@@ -118,6 +118,7 @@ function swimTable(username, races) {
   if(document.getElementById("statTable") !=null){
     document.getElementById("statTable").innerHTML = html;
   }
+  return html;
 }
 /* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
