@@ -4,10 +4,10 @@
 }
 .navbar img{
     border-radius: 50%;
-    width: 20px;
+    width: 40px;
     float: right;
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
     text-decoration: none;
     font-size: 17px; 
 }
@@ -15,27 +15,50 @@
     position:relative;
     float:right;
     text-align: center;
-    top: 12px;
+    top: 28px;
+    right: 10px;
     text-decoration: none;
 }
 .navbar a,.navbar p{
     color:white;
     float: right;
     text-align: center;
-    padding: 14px 16px;
+    padding: 20px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 40px;
 }
-.navbar a:hover, .sidebar p:hover{
-    color: black;
+.account{
+    color: white;
+    float: right;
+    text-align: center;
+    padding: 24px 16px;
+    text-decoration: none;
+    font-size: 24px;
 }
-a.icon{
-    float: left;
+.navbar a:hover, .sidebar a:hover{
+    color: Black;
 }
 .mainpg{
     right:1%;
     transform: translateX(1%);
 }
+.mainpg p{
+    font-size: 20px;
+}
+.textBox{
+    padding: 10px;
+    float: center;
+    width: 97%;
+}
+.submit{
+    padding: 10px;
+    float: right;
+    scale: 10%;
+    width:10%;
+    height: auto;
+}
+
+
 table{
     width: 98%;
 }
