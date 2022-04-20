@@ -173,6 +173,7 @@ function putplayer(){
       input = prompt("Enter player username");
       table = document.getElementById("tbl");
       if(players.has(input) && !(findinput(input,table))){
+        console.log("in");
         var row = table.insertRow(1);
         row.insertCell(0).innerHTML = players.get(input).name;
         row.insertCell(1).innerHTML = findbestevent(input);
