@@ -47,8 +47,11 @@ describe("swimTable", () => {
     it("html table is formed", () => {
         expect(table != null).toBe(true);
     });
-    it("html table is formed", () => {
-      expect(table.querySelector("tr") != null).toBe(true);
+    it("creates stucture of table", () => {
+      expect(table.includes("tr")).toBe(true);
   });
+  it("includes correct values", () => {
+    expect(table.includes("144")).toBe(true);
+});
 
 });
