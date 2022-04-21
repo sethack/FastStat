@@ -1,41 +1,17 @@
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-
-
-/* JSC.Chart('myChart', {
-    type: 'line',
-    title_label_text: 'Line Series Types',
-    legend_visible: false,
-    xAxis: { scale_type: 'time' },
-    series: [
-      { 
-        name: 'Date',
-        points: [
-          ['1/1/2022', 29.9],
-          ['1/2/2022', 71.5],
-          ['1/3/2022', 106.4],
-          ['2/6/2022', 129.2],
-          ['3/7/2022', 144.0],
-          ['4/8/2022', 176.0]
-        ]
-      }
-    ]
-}); */
-
-/* var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-var yValues = [7,8,8,9,9,9,10,11,14,14,15];
-
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{
-      //backgroundColor: "rgba(0,0,0,1.0)",
-      borderColor: "rgba(0,0,0,0.1)",
-      data: yValues
-    }]
+  if(document.querySelector("#addtoroster") !== null){
+    putplayer();
+  if(document.querySelector("#remove") !== null){
+    removeplayer();
   }
-}); */
+  players.set(
+    'nemoFish', {
+      password: "hello",
+      name: "Nemo",
+      email: "luckyfin@fish.com"
+    })
+}
 
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
@@ -56,28 +32,9 @@ let emailWidget = document.querySelector("#email");
     profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
     email: emailWidget.value,
     password: passwordWidget.value});
+    console.log(players); 
   }
 });
-
-
-function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
-                                                      // would it be easier if we have a map wich points to this obj?
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-  this.times = times;
-
-
-}
-function coach(name,username,email,password){
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-}
-
-
 let swimmer = {
   nemoFish: {
     password: "hello",
@@ -105,16 +62,11 @@ let swimmer = {
     }
   }
 }
-
-
-
-function swimDates(username, races, points) {
+function swimData(username, races, points) {
   let swim = swimmer[username];
-  console.log("dates");
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      console.log([swim.entries[num].date])
-      points.push(swim.entries[num].date)
+      points.push(swim.entries[num].date);
     }
   }
   return points;
@@ -122,20 +74,8 @@ function swimDates(username, races, points) {
 
 function swimTimes(username, races, points) {
   let swim = swimmer[username];
-  console.log("times");
-  let minutes = "";
-  let seconds = 0;
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      console.log([swim.entries[num].time])
-      minutes = swim.entries[num].time % 60;
-      console.log(minutes);
-      seconds = (swim.entries[num].time - minutes*60);
-      
-      //points.push([minutes + seconds])
-      minutes = swim.entries[num].time
-      seconds = parseInt(minutes);
-      console.log(seconds);
       points.push(parseInt(swim.entries[num].time))
     }
   }
@@ -165,7 +105,6 @@ function swimTable(username, races) {
   html += '</table>';
   if(document.getElementById("statTable") !=null){
     document.getElementById("statTable").innerHTML = html;
-
   }
   return html;
 }
@@ -195,9 +134,7 @@ function swimTable(username, races) {
         fontColor: "#111"
       }
     }
-  });
-}
-
+}); 
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
@@ -214,3 +151,55 @@ if(document.getElementById("eventsResults") != null){
     swimGraph(username1, datePoints, timePoints, events.value)
   });
 }
+function putplayer(){
+  document.getElementById("addtoroster").addEventListener("click", () =>{
+      input = prompt("Enter player username");
+      table = document.getElementById("tbl");
+      if(players.has(input) && !(findinput(input,table))){
+        var row = table.insertRow(1);
+        row.insertCell(0).innerHTML = players.get(input).name;
+        row.insertCell(1).innerHTML = findbestevent(input);
+      }
+      else{
+        alert("Username not found in database, or this player already exists on your table!")
+      }
+  })
+}
+function findbestevent(usrname){
+  try{
+    bestevent = null;
+    x = 0;
+    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
+      if(parseFloat(players.get(usrname).entries[i].time)>x){
+        bestevent = players.get(usrname).entries[i].race;
+      }
+    }
+    return bestevent;
+  }
+  catch (error){
+    alert("player has no race data!");
+    return null;
+  }
+}
+function removeplayer(){
+  let table = document.getElementById("tbl")
+  document.getElementById("remove").addEventListener("click", ()=>{
+    let input = prompt("Enter player username");
+    holder = findinput(input,table);
+    if(holder != false){  // players in table exist 
+      table.deleteRow(holder);
+      //remove player
+    }
+    else{
+      alert("Player not found in table");
+    }
+  })
+}
+function findinput(input,table){
+  for(var r = 0, n = table.rows.length; r < n; r++) {
+      if(table.rows[r].cells[0].innerHTML === input){
+        return(r);
+      }
+    }
+  return false;
+}}
