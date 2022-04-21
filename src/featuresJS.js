@@ -127,18 +127,8 @@ function swimTable(username, races) {
   }
   return html;
 }
-<<<<<<< HEAD
-/* function swimGraph(username, point, event){
-  if(document.querySelector("canvas") != null){
-    console.log("remove");
-    let chart = document.querySelectorAll("canvas");
-
-    chart[chart.length -1].style.display = "none";
-  } */
-=======
 
  function swimGraph(username, dates, times, event){
->>>>>>> cody
   console.log(dates);
   console.log(times);
   html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
@@ -233,3 +223,4 @@ function findinput(input,table){
     }
   return false;
 }
+ }
