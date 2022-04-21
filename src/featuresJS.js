@@ -66,7 +66,7 @@ function swimDates(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      points.push(parseInt(swim.entries[num].date))
+      points.push(swim.entries[num].date);
     }
   }
   return points;
