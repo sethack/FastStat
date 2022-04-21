@@ -133,14 +133,14 @@ function swimTable(username, races) {
       }
     }
 }); 
-
+console.log("here!!!!!!!");
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
   let events = document.getElementById("eventsResults");
-  
+  console.log("here!!!!!!!");
   events.addEventListener("change", () => { 
-    
+    console.log("click");
     let datePoints = [];
     let timePoints = [];
     datePoints = swimDates(username1, events.value, datePoints);
