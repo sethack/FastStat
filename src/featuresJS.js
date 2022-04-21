@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
+  console.log("here!!!!!!!");
   players.set(
     'nemoFish', {
       password: "hello",
