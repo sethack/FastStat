@@ -151,6 +151,7 @@ if(document.getElementById("eventsResults") != null){
     swimGraph(username1, datePoints, timePoints, events.value)
   });
 }
+ }
 
 function putplayer(){
   document.getElementById("addtoroster").addEventListener("click", () =>{
@@ -205,4 +206,4 @@ function findinput(input,table){
     }
   return false;
 }
- }
+
