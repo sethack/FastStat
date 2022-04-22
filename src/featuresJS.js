@@ -1,4 +1,3 @@
-let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
 
 
@@ -27,6 +26,7 @@ if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
 }
+
 function addPlayer(){
 let profTypeWidget = document.querySelector("select");
 let passwordWidget = document.querySelector("#password");
@@ -36,13 +36,19 @@ let emailWidget = document.querySelector("#email");
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
-  players.set(usernameWidget.value, {
-    name: nameWidget.value, 
-    profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-    email: emailWidget.value,
-    password: passwordWidget.value});
+  let player = {
+      name: nameWidget.value, 
+      profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+      email: emailWidget.value,
+      password: passwordWidget.value
   }
+
+  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
+}
+
 });
+  
+
 
 
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
