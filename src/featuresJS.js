@@ -1,3 +1,4 @@
+
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#addtoroster") !== null){
@@ -51,6 +52,7 @@ let emailWidget = document.querySelector("#email");
     email: emailWidget.value,
     password: passwordWidget.value});
     console.log(players); 
+    save(players);
   }
 });
 let swimmer = {
@@ -179,7 +181,7 @@ function putplayer(){
   document.getElementById("addtoroster").addEventListener("click", () =>{
       input = prompt("Enter player username");
       table = document.getElementById("tbl");
-      if(players.has(input) && !(findinput(input,table))){
+      if(players.has(input) && !(findinput(input,table))&&players.get(input).profile === "Swimmer"){
         console.log("in");
         var row = table.insertRow(1);
         row.insertCell(0).innerHTML = players.get(input).name;
