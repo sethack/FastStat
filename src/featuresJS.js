@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
+  console.log("here!!!!!!!");
   players.set(
     'nemoFish', {
       password: "hello",
@@ -13,25 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
       email: "luckyfin@fish.com"
     })
 }
-/* JSC.Chart('myChart', {
-    type: 'line',
-    title_label_text: 'Line Series Types',
-    legend_visible: false,
-    xAxis: { scale_type: 'time' },
-    series: [
-      { 
-        name: 'Date',
-        points: [
-          ['1/1/2022', 29.9],
-          ['1/2/2022', 71.5],
-          ['1/3/2022', 106.4],
-          ['2/6/2022', 129.2],
-          ['3/7/2022', 144.0],
-          ['4/8/2022', 176.0]
-        ]
-      }
-    ]
-}); */
+
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
@@ -82,27 +65,25 @@ let swimmer = {
     }
   }
 }
-function swimData(username, races, points) {
+function swimDates(username, races, points) {
   let swim = swimmer[username];
-  console.log("times");
-  let minutes = "";
-  let seconds = 0;
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      console.log([swim.entries[num].time])
-      minutes = swim.entries[num].time % 60;
-      console.log(minutes);
-      seconds = (swim.entries[num].time - minutes*60);
-      
-      //points.push([minutes + seconds])
-      minutes = swim.entries[num].time
-      seconds = parseInt(minutes);
-      console.log(seconds);
+      points.push(swim.entries[num].date);
+    }
+  }
+  return points;
+}
+function swimTimes(username, races, points) {
+  let swim = swimmer[username];
+  for(num in swim.entries){
+    if(swim.entries[num].race === races){
       points.push(parseInt(swim.entries[num].time))
     }
   }
   return points;
 }
+
 function swimTable(username, races) {
   let swim = swimmer[username];
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
@@ -161,13 +142,13 @@ function swimTable(username, races) {
       }
     }
 }); 
+console.log("here!!!!!!!");
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
   let events = document.getElementById("eventsResults");
-  console.log(events.value);
-  events.addEventListener("change", () => { 
-    console.log("yay");
+  console.log("here!!!!!!!");
+    console.log("click");
     let datePoints = [];
     let timePoints = [];
     datePoints = swimDates(username1, events.value, datePoints);
