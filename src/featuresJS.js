@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-
+  if(document.querySelector("#addtoroster") !== null){
+    putplayer();
+  if(document.querySelector("#remove") !== null){
+    removeplayer();
+  }
+  players.set(
+    'nemoFish', {
+      password: "hello",
+      name: "Nemo",
+      email: "luckyfin@fish.com"
+    })
+}
 /* JSC.Chart('myChart', {
     type: 'line',
     title_label_text: 'Line Series Types',
@@ -20,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ]
 }); */
-
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
@@ -36,17 +45,27 @@ let emailWidget = document.querySelector("#email");
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
+<<<<<<< HEAD
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value
+=======
+  players.set(usernameWidget.value, {
+    name: nameWidget.value, 
+    profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+    email: emailWidget.value,
+    password: passwordWidget.value});
+    console.log(players); 
+>>>>>>> 86da2720d2271adbeb4845265513ee7f8c4c0067
   }
 
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
 }
 
 });
+<<<<<<< HEAD
   
 
 
@@ -69,6 +88,8 @@ function coach(name,username,email,password){
 }
 
 
+=======
+>>>>>>> 86da2720d2271adbeb4845265513ee7f8c4c0067
 let swimmer = {
   nemoFish: {
     password: "hello",
@@ -96,9 +117,6 @@ let swimmer = {
     }
   }
 }
-
-
-
 function swimData(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
@@ -109,7 +127,6 @@ function swimData(username, races, points) {
   }
   return points;
 }
-
 function swimTable(username, races) {
   let swim = swimmer[username];
   html = '<table id = "statTable"><tr class = "two"><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
@@ -124,10 +141,11 @@ function swimTable(username, races) {
     }
   }
   html += '</table>';
-  document.getElementById("statTable").innerHTML = html;
+  if(document.getElementById("statTable") !=null){
+    document.getElementById("statTable").innerHTML = html;
+  }
 }
-
-function swimGraph(username, point, event){
+/* function swimGraph(username, point, event){
   if(document.querySelector("canvas") != null){
     console.log("remove");
     let chart = document.querySelector("canvas");
@@ -146,9 +164,8 @@ document.getElementById("chart").innerHTML = html;
         points: point
       }
     ]
-});
-
-}
+}); */
+//}
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
@@ -160,6 +177,58 @@ if(document.getElementById("eventsResults") != null){
     graphPoints = swimData(username1, events.value, graphPoints);
     console.log(graphPoints);
     swimTable(username1, events.value);
-    swimGraph(username1, graphPoints, events.value)
+    // swimGraph(username1, graphPoints, events.value)
   });
+}
+function putplayer(){
+  document.getElementById("addtoroster").addEventListener("click", () =>{
+      input = prompt("Enter player username");
+      table = document.getElementById("tbl");
+      if(players.has(input) && !(findinput(input,table))){
+        var row = table.insertRow(1);
+        row.insertCell(0).innerHTML = players.get(input).name;
+        row.insertCell(1).innerHTML = findbestevent(input);
+      }
+      else{
+        alert("Username not found in database, or this player already exists on your table!")
+      }
+  })
+}
+function findbestevent(usrname){
+  try{
+    bestevent = null;
+    x = 0;
+    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
+      if(parseFloat(players.get(usrname).entries[i].time)>x){
+        bestevent = players.get(usrname).entries[i].race;
+      }
+    }
+    return bestevent;
+  }
+  catch (error){
+    alert("player has no race data!");
+    return null;
+  }
+}
+function removeplayer(){
+  let table = document.getElementById("tbl")
+  document.getElementById("remove").addEventListener("click", ()=>{
+    let input = prompt("Enter player username");
+    holder = findinput(input,table);
+    if(holder != false){  // players in table exist 
+      table.deleteRow(holder);
+      //remove player
+    }
+    else{
+      alert("Player not found in table");
+    }
+  })
+}
+function findinput(input,table){
+  for(var r = 0, n = table.rows.length; r < n; r++) {
+      if(table.rows[r].cells[0].innerHTML === input){
+        return(r);
+      }
+    }
+  return false;
 }
