@@ -55,6 +55,10 @@ let emailWidget = document.querySelector("#email");
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
 }
 
+if(document.querySelector(".events") !== null){
+  console.log("TEST");
+  timeStore();
+  }
 });
   
 
@@ -219,4 +223,15 @@ function findinput(input,table){
       }
     }
   return false;
+}
+
+function timeStore(){
+  document.querySelector(".getTime").addEventListener("click", ()=>{
+    let event = document.getElementById("events");
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    let comments = document.querySelector(".comments");
+    console.log(events.value);
+    
+  })
 }
