@@ -27,14 +27,35 @@ let emailWidget = document.querySelector("#email");
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
-  players.set(usernameWidget.value, {
-    name: nameWidget.value, 
-    profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-    email: emailWidget.value,
-    password: passwordWidget.value});
-    console.log(players); 
+  let player = {
+      name: nameWidget.value, 
+      profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+      email: emailWidget.value,
+      password: passwordWidget.value
   }
-});
+};
+  
+
+
+
+function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
+                                                      // would it be easier if we have a map wich points to this obj?
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+  this.times = times;
+
+
+}
+function coach(name,username,email,password){
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+}
+
+
 let swimmer = {
   nemoFish: {
     password: "hello",
@@ -132,7 +153,7 @@ function swimTable(username, races) {
         fontColor: "#111"
       }
     }
-}); 
+})}; 
 console.log("here!!!!!!!");
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
@@ -203,5 +224,4 @@ function findinput(input,table){
       }
     }
   return false;
-}
- }
+}});
