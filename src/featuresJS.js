@@ -45,27 +45,18 @@ let emailWidget = document.querySelector("#email");
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
-<<<<<<< HEAD
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value
-=======
-  players.set(usernameWidget.value, {
-    name: nameWidget.value, 
-    profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-    email: emailWidget.value,
-    password: passwordWidget.value});
-    console.log(players); 
->>>>>>> 86da2720d2271adbeb4845265513ee7f8c4c0067
   }
-
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
+  window.alert("Account created successfully. Please log in.");
+  window.location.href = "logIn.html";
 }
 
 });
-<<<<<<< HEAD
   
 
 
@@ -88,8 +79,6 @@ function coach(name,username,email,password){
 }
 
 
-=======
->>>>>>> 86da2720d2271adbeb4845265513ee7f8c4c0067
 let swimmer = {
   nemoFish: {
     password: "hello",
