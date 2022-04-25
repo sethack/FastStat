@@ -33,7 +33,16 @@ let emailWidget = document.querySelector("#email");
       email: emailWidget.value,
       password: passwordWidget.value
   }
+<<<<<<< HEAD
 };
+=======
+  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
+  window.alert("Account created successfully. Please log in.");
+  window.location.href = "logIn.html";
+}
+
+});
+>>>>>>> c4d10c66e887752a7d4085f2e4011add22a8a065
   
 
 
