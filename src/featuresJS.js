@@ -1,3 +1,31 @@
+let swimmer = {
+  nemoFish: {
+    password: "hello",
+    name: "Nemo",
+    email: "luckyfin@fish.com",
+    entries: {
+      1:{
+        race: "100 Freestyle",
+        date: "3/7/2022", 
+        time: "144",
+        comment: "Touched the butt"
+      },
+      2:{
+        race: "100 Freestyle",
+        date: "3/8/2022", 
+        time: "144",
+        comment: "Touched the butt"
+      },
+      3:{
+        race: "200 Freestyle",
+        date: "3/9/2022", 
+        time: "164",
+        comment: "Touched the butt"
+      }
+    }
+  }
+}
+
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#addtoroster") !== null){
@@ -37,7 +65,7 @@ let emailWidget = document.querySelector("#email");
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html";
 }
-
+localStorage.setItem('nemoFish', JSON.stringify(swimmer))
 });
   
 
@@ -61,33 +89,7 @@ function coach(name,username,email,password){
 }
 
 
-let swimmer = {
-  nemoFish: {
-    password: "hello",
-    name: "Nemo",
-    email: "luckyfin@fish.com",
-    entries: {
-      1:{
-        race: "100 Freestyle",
-        date: "3/7/2022", 
-        time: "144",
-        comment: "Touched the butt"
-      },
-      2:{
-        race: "100 Freestyle",
-        date: "3/8/2022", 
-        time: "144",
-        comment: "Touched the butt"
-      },
-      3:{
-        race: "200 Freestyle",
-        date: "3/9/2022", 
-        time: "164",
-        comment: "Touched the butt"
-      }
-    }
-  }
-}
+
 function swimDates(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
@@ -159,14 +161,14 @@ function swimTable(username, races) {
       }
     }
 })}; 
-console.log("here!!!!!!!");
+
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
   let events = document.getElementById("eventsResults");
-  console.log("here!!!!!!!");
+  
   events.addEventListener("change", () => { 
-    console.log("click");
+    
     let datePoints = [];
     let timePoints = [];
     datePoints = swimDates(username1, events.value, datePoints);
