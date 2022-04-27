@@ -65,15 +65,7 @@ let emailWidget = document.querySelector("#email");
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html";
 }
-<<<<<<< HEAD
 localStorage.setItem('nemoFish', JSON.stringify(swimmer))
-=======
-
-if(document.querySelector(".events") !== null){
-  console.log("TEST");
-  timeStore();
-  }
->>>>>>> 84a2e2efd81f6166cb998a96ecda3b0a8ac8c694
 });
   
 
