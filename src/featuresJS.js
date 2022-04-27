@@ -60,6 +60,60 @@ let emailWidget = document.querySelector("#email");
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value
+<<<<<<< HEAD
+=======
+  }
+  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
+  window.alert("Account created successfully. Please log in.");
+  window.location.href = "logIn.html";
+}
+});
+  
+
+
+
+function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
+                                                      // would it be easier if we have a map wich points to this obj?
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+  this.times = times;
+
+
+}
+function coach(name,username,email,password){
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+}
+
+
+let nemoFish = {
+  password: "hello",
+  name: "Nemo",
+  email: "luckyfin@fish.com",
+  entries: {
+    1:{
+      race: "100 Freestyle",
+      date: "3/7/2022", 
+      time: "144",
+      comment: "Touched the butt"
+    },
+    2:{
+      race: "100 Freestyle",
+      date: "3/8/2022", 
+      time: "144",
+      comment: "Touched the butt"
+    },
+    3:{
+      race: "200 Freestyle",
+      date: "3/9/2022", 
+      time: "164",
+      comment: "Touched the butt"
+    }
+>>>>>>> cody
   }
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
@@ -99,7 +153,7 @@ function coach(name,username,email,password){
 
 
 function swimDates(username, races, points) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       points.push(swim.entries[num].date);
@@ -109,7 +163,7 @@ function swimDates(username, races, points) {
 }
 
 function swimTimes(username, races, points) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       points.push(parseInt(swim.entries[num].time))
@@ -119,7 +173,7 @@ function swimTimes(username, races, points) {
 }
 
 function swimTable(username, races) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
   let count = 0;
   for(num in swim.entries){
@@ -239,6 +293,7 @@ function findinput(input,table){
       }
     }
   return false;
+<<<<<<< HEAD
 }
 
 function timeStore(){
@@ -251,3 +306,6 @@ function timeStore(){
     
   })
 }
+=======
+};
+>>>>>>> cody
