@@ -1,32 +1,56 @@
+let swimmer = {
+  nemoFish: {
+    password: "hello",
+    name: "Nemo",
+    email: "luckyfin@fish.com",
+    entries: {
+      1:{
+        race: "100 Freestyle",
+        date: "3/7/2022", 
+        time: "144",
+        comment: "Touched the butt"
+      },
+      2:{
+        race: "100 Freestyle",
+        date: "3/8/2022", 
+        time: "144",
+        comment: "Touched the butt"
+      },
+      3:{
+        race: "200 Freestyle",
+        date: "3/9/2022", 
+        time: "164",
+        comment: "Touched the butt"
+      }
+    }
+  }
+}
+
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-
-
-/* JSC.Chart('myChart', {
-    type: 'line',
-    title_label_text: 'Line Series Types',
-    legend_visible: false,
-    xAxis: { scale_type: 'time' },
-    series: [
-      { 
-        name: 'Date',
-        points: [
-          ['1/1/2022', 29.9],
-          ['1/2/2022', 71.5],
-          ['1/3/2022', 106.4],
-          ['2/6/2022', 129.2],
-          ['3/7/2022', 144.0],
-          ['4/8/2022', 176.0]
-        ]
-      }
-    ]
-}); */
+  if(document.getElementById("eTime") !== null){
+    timeStore();
+  }
+  if(document.querySelector("#addtoroster") !== null){
+    putplayer();
+  if(document.querySelector("#remove") !== null){
+    removeplayer();
+  }
+  
+  players.set(
+    'nemoFish', {
+      password: "hello",
+      name: "Nemo",
+      email: "luckyfin@fish.com"
+    })
+}
 
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
   let formWidget = document.querySelector("#caButton");
   formWidget.addEventListener("click", addPlayer); 
   }
+
   function addPlayer(){
   //get form inputs
   let profTypeWidget = document.querySelector("select");
@@ -70,19 +94,23 @@ if(document.querySelector("#caButton") !== null){
     window.alert("Passwords must be the same.")
     return;
   }
+
+//create temporary player object 
+let player = {
+  name: nameWidget.value, 
+  profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+  email: emailWidget.value,
+  password: passwordWidget.value
+}
+localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
+window.alert("Account created successfully. Please log in.");
+window.location.href = "logIn.html";
+}
+localStorage.setItem('nemoFish', JSON.stringify(swimmer))
+});
   
-  //create temporary player object 
-  let player = {
-        name: nameWidget.value, 
-        profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-        email: emailWidget.value,
-        password: passwordWidget.value
-    }
-    localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
-    window.alert("Account created successfully. Please log in.");
-    window.location.href = "logIn.html";
-  }
-  });
+
+
 
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
                                                       // would it be easier if we have a map wich points to this obj?
@@ -102,42 +130,22 @@ function coach(name,username,email,password){
 }
 
 
-let swimmer = {
-  nemoFish: {
-    password: "hello",
-    name: "Nemo",
-    email: "luckyfin@fish.com",
-    entries: {
-      1:{
-        race: "100 Freestyle",
-        date: "3/7/2022", 
-        time: "144.0",
-        comment: "Touched the butt"
-      },
-      2:{
-        race: "100 Freestyle",
-        date: "3/8/2022", 
-        time: "144.0",
-        comment: "Touched the butt"
-      },
-      3:{
-        race: "100 Freestyle",
-        date: "3/9/2022", 
-        time: "164.0",
-        comment: "Touched the butt"
-      }
-    }
-  }
-}
 
-
-
-function swimData(username, races, points) {
+function swimDates(username, races, points) {
   let swim = swimmer[username];
   for(num in swim.entries){
     if(swim.entries[num].race === races){
-      console.log([swim.entries[num].date, swim.entries[num].time])
-      points.push([swim.entries[num].date, swim.entries[num].time])
+      points.push(swim.entries[num].date);
+    }
+  }
+  return points;
+}
+
+function swimTimes(username, races, points) {
+  let swim = swimmer[username];
+  for(num in swim.entries){
+    if(swim.entries[num].race === races){
+      points.push(parseInt(swim.entries[num].time))
     }
   }
   return points;
@@ -145,7 +153,8 @@ function swimData(username, races, points) {
 
 function swimTable(username, races) {
   let swim = swimmer[username];
-  html = '<table id = "statTable"><tr class = "two"><th colspan="1">Date</th><th colspan="1">Event</th><th colspan="1">Time</th><th colspan="2">Comments</th></tr>';
+  html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
+  let count = 0;
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       html += '<tr>';
@@ -154,50 +163,61 @@ function swimTable(username, races) {
       html += '<td>' + swim.entries[num].time + '</td>';
       html += '<td>' + swim.entries[num].comment + '</td>';
       html += '</tr>';
+      count ++;
     }
   }
-  html += '</table>';
-  document.getElementById("statTable").innerHTML = html;
-}
-
-function swimGraph(username, point, event){
-  if(document.querySelector("canvas") != null){
-    console.log("remove");
-    let chart = document.querySelector("canvas");
-    chart.parentNode.removeChild(chart);
+  if(count === 0){
+    html += '<tr>';
+    html += '<td colspan = "4" style = "font-size: 16pt">No Recorded Times For '+ races + '</td>';
+    html += '</tr>';
   }
-  html = "<canvas id='myChart'></canvas>";
-document.getElementById("chart").innerHTML = html;
-  JSC.Chart('myChart', {
-    type: 'line',
-    title_label_text: event,
-    legend_visible: false,
-    xAxis: { scale_type: 'time' },
-    series: [
-      { 
-        name: 'Date',
-        points: point
-      }
-    ]
-});
-
+  html += '</table>';
+  if(document.getElementById("statTable") !=null){
+    document.getElementById("statTable").innerHTML = html;
+  }
+  return html;
 }
+
+ function swimGraph(username, dates, times, event){
+  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
+  document.getElementById("chart").innerHTML = html;
+  new Chart("myChart", {
+    type: "line",
+    data: {
+      labels: dates,
+      datasets: [{
+        label: "Times",
+        borderColor: "black",
+        data: times,
+        fill: false
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        position: "top",
+        text: event + "Progression",
+        fontSize: 18,
+        fontColor: "#111"
+      }
+    }
+})}; 
+
 var username1 = "nemoFish";
 if(document.getElementById("eventsResults") != null){
   var username1 = "nemoFish";
   let events = document.getElementById("eventsResults");
-  console.log(events.value);
+  
   events.addEventListener("change", () => { 
-    console.log("yay");
-    let graphPoints = [];
-    graphPoints = swimData(username1, events.value, graphPoints);
-    console.log(graphPoints);
+    
+    let datePoints = [];
+    let timePoints = [];
+    datePoints = swimDates(username1, events.value, datePoints);
+    timePoints = swimTimes(username1, events.value, timePoints);
+    //console.log(graphPoints);
     swimTable(username1, events.value);
-    swimGraph(username1, graphPoints, events.value)
+    swimGraph(username1, datePoints, timePoints, events.value)
   });
-<<<<<<< HEAD
-} 
-=======
 }
 
 function putplayer(){
@@ -292,13 +312,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", data);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          window.location = "src/coachPg.html"; //MAKE THIS WORK
+          window.location.href = "src/coachPg.html"; //MAKE THIS WORK
         }
         else{
-          window.location = "src/home.html"; //MAKE THIS WORK
+          window.location.href = "src/home.html"; //MAKE THIS WORK
         }
       }
   })
 }
 })
->>>>>>> 99e0da627ceb51d33a1bbdfed321a6c048dec27f
