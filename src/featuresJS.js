@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
-<<<<<<< HEAD
   let formWidget = document.querySelector("#caButton");
   formWidget.addEventListener("click", addPlayer); 
   }
@@ -88,61 +87,6 @@ if(document.querySelector("#caButton") !== null){
   if (cPasswordWidget.value.length ===0) { //confirm password validator
     window.alert("Please confirm password.")
     return;
-=======
-let formWidget = document.querySelector("#caButton");
-formWidget.addEventListener("click", addPlayer); 
-}
-function addPlayer(){
-//get form inputs
-let profTypeWidget = document.querySelector("select");
-let passwordWidget = document.querySelector("#password");
-let cPasswordWidget = document.querySelector("#cPassword");
-let nameWidget = document.querySelector("#name");
-let usernameWidget = document.querySelector("#username");
-let emailWidget = document.querySelector("#email"); 
-
-if (profTypeWidget.options[profTypeWidget.selectedIndex].value === "Please choose an account type") { //profile type validator
-  window.alert("Please select an account type.")
-  return;
-}
-
-if (nameWidget.value.length === 0) { //name validator
-  window.alert("Please enter a name.")
-  return;
-}
-
-if (usernameWidget.value.length === 0) { //username validator
-  window.alert("Please enter a username.")
-  return;
-}
-
-if (emailWidget.value.length === 0 || !emailWidget.value.includes("@")) { //email validator
-  window.alert("Please enter a valid email.")
-  return;
-}
-
-if (passwordWidget.value.length ===0) { //password validator
-  window.alert("Please enter a password.")
-  return;
-}
-
-if (cPasswordWidget.value.length ===0) { //confirm password validator
-  window.alert("Please confirm password.")
-  return;
-}
-
-if (passwordWidget.value !== cPasswordWidget.value) { //passwords match validator
-  window.alert("Passwords must be the same.")
-  return;
-}
-
-//create temporary player object 
-let player = {
-      name: nameWidget.value, 
-      profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
-      email: emailWidget.value,
-      password: passwordWidget.value
->>>>>>> fd94e98af80acfbd403ca27e4e7d0873c08a7bcf
   }
   
   if (passwordWidget.value !== cPasswordWidget.value) { //passwords match validator
@@ -416,17 +360,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", data);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-<<<<<<< HEAD
           window.location.href = "src/coachPg.html"; //MAKE THIS WORK
         }
         else{
           window.location.href = "src/home.html"; //MAKE THIS WORK
-=======
-          window.location.href = "coachPg.html"; //MAKE THIS WORK
-        }
-        else{
-          window.location.href = "home.html"; //MAKE THIS WORK
->>>>>>> fd94e98af80acfbd403ca27e4e7d0873c08a7bcf
         }
       }
   })
