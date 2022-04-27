@@ -357,13 +357,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         alert("Username or Password incorrect!")
       }
       else{
-        localStorage.setItem("Current", data);
+        localStorage.setItem("Current", username);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          window.location.href = "src/coachPg.html"; //MAKE THIS WORK
+          window.location.href = "coachPg.html"; //MAKE THIS WORK
         }
         else{
-          window.location.href = "src/home.html"; //MAKE THIS WORK
+          window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
   })
