@@ -28,16 +28,11 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-  if(document.getElementById("eTime") !== null){
-    console.log("test");
-    timeStore();
-  }
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
-  
   players.set(
     'nemoFish', {
       password: "hello",
@@ -52,21 +47,55 @@ let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
 }
 function addPlayer(){
+//get form inputs
 let profTypeWidget = document.querySelector("select");
 let passwordWidget = document.querySelector("#password");
+let cPasswordWidget = document.querySelector("#cPassword");
 let nameWidget = document.querySelector("#name");
 let usernameWidget = document.querySelector("#username");
 let emailWidget = document.querySelector("#email"); 
-// if (!profType || !password) {
-  //   event.preventDefault();
-  // }
-  let player = {
+
+if (profTypeWidget.options[profTypeWidget.selectedIndex].value === "Please choose an account type") { //profile type validator
+  window.alert("Please select an account type.")
+  return;
+}
+
+if (nameWidget.value.length === 0) { //name validator
+  window.alert("Please enter a name.")
+  return;
+}
+
+if (usernameWidget.value.length === 0) { //username validator
+  window.alert("Please enter a username.")
+  return;
+}
+
+if (emailWidget.value.length === 0 || !emailWidget.value.includes("@")) { //email validator
+  window.alert("Please enter a valid email.")
+  return;
+}
+
+if (passwordWidget.value.length ===0) { //password validator
+  window.alert("Please enter a password.")
+  return;
+}
+
+if (cPasswordWidget.value.length ===0) { //confirm password validator
+  window.alert("Please confirm password.")
+  return;
+}
+
+if (passwordWidget.value !== cPasswordWidget.value) { //passwords match validator
+  window.alert("Passwords must be the same.")
+  return;
+}
+
+//create temporary player object 
+let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value
-<<<<<<< HEAD
-=======
   }
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
@@ -118,14 +147,11 @@ let nemoFish = {
       time: "164",
       comment: "Touched the butt"
     }
->>>>>>> cody
-  }
-  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
+  }}
+  localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html";
-}
-localStorage.setItem('nemoFish', JSON.stringify(swimmer))
-});
+
   
 
 
@@ -290,22 +316,4 @@ function findinput(input,table){
       }
     }
   return false;
-<<<<<<< HEAD
-}
-
-function timeStore(){
-  document.getElementById("eTime").addEventListener("click", ()=>{
-    let event = document.getElementById("events");
-    let time = document.querySelector(".time");
-    let date = document.querySelector(".date");
-    let comments = document.querySelector(".comments");
-    console.log(event.value);
-    console.log(time.value);
-    console.log(date.value);
-    console.log(comments.value);
-    
-  })
-}
-=======
 };
->>>>>>> cody
