@@ -28,6 +28,9 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById("eTime") !== null){
+    timeStore();
+  }
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
   if(document.querySelector("#remove") !== null){
@@ -267,11 +270,13 @@ if(document.getElementById("eventsResults") != null){
 function putplayer(){
   document.getElementById("addtoroster").addEventListener("click", () =>{
       input = prompt("Enter player username");
+      data = JSON.parse(localStorage.getItem(input))
+      console.log(data)
       table = document.getElementById("tbl");
       if(players.has(input) && !(findinput(input,table))){
         console.log("in");
         var row = table.insertRow(1);
-        row.insertCell(0).innerHTML = players.get(input).name;
+        row.insertCell(0).innerHTML = data["name"];
         //row.insertCell(1).innerHTML = findbestevent(input);
       }
       else{
@@ -316,4 +321,50 @@ function findinput(input,table){
       }
     }
   return false;
-};
+}
+
+function timeStore(){
+  document.getElementById("eTime").addEventListener("click", ()=>{
+    let event = document.getElementById("events");
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    let comments = document.querySelector(".comments");
+    console.log(event.value);
+    console.log(time.value);
+    console.log(date.value);
+    console.log(comments.value);
+    
+  })
+}
+document.addEventListener("DOMContentLoaded", ()=>{
+  if(document.getElementById("formLg") !== null){
+  console.log("hi")
+  let lgin = document.getElementById("lg");
+  console.log(lgin)
+  console.log(localStorage)
+  console.log(JSON.parse(localStorage.getItem("jim")))
+  lgin.addEventListener("click", ()=>{
+    console.log("hi")
+    username = document.getElementById("usernamelg").value;
+    password = document.getElementById("passwordlg").value;
+      data = JSON.parse(localStorage.getItem(username))
+      console.log(data)
+      if(data === null){
+        alert("account dosent exist!")
+      }
+      else if(!(password === data["password"])){
+        alert("username or password incorrect!")
+      }
+      else{
+        localStorage.setItem("Current", data);
+        console.log(localStorage)
+        if(data["profile"] === "Coach"){
+          Window.location.href = "src/coachPg.html";
+        }
+        else{
+          Window.location.href = "src/home.html";
+        }
+      }
+  })
+}
+})
