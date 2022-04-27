@@ -269,16 +269,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
         alert("account dosent exist!")
       }
       else if(!(password === data["password"])){
-        alert("username or password incorrect!")
+        alert("Username or Password incorrect!")
       }
       else{
         localStorage.setItem("Current", data);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          Window.location.href = "src/coachPg.html";
+          window.location = "src/coachPg.html"; //MAKE THIS WORK
         }
         else{
-          Window.location.href = "src/home.html";
+          window.location = "src/home.html"; //MAKE THIS WORK
         }
       }
   })
