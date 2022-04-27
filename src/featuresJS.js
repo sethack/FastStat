@@ -28,7 +28,6 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("dom loaded");
   if(document.getElementById("eTime") !== null){
     console.log("test");
     timeStore();
@@ -53,57 +52,21 @@ let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
 }
 function addPlayer(){
-//get form inputs
 let profTypeWidget = document.querySelector("select");
 let passwordWidget = document.querySelector("#password");
-let cPasswordWidget = document.querySelector("#cPassword");
 let nameWidget = document.querySelector("#name");
 let usernameWidget = document.querySelector("#username");
 let emailWidget = document.querySelector("#email"); 
-
-if (profTypeWidget.options[profTypeWidget.selectedIndex].value === "Please choose an account type") { //profile type validator
-  window.alert("Please select an account type.")
-  return;
-}
-
-if (nameWidget.value.length === 0) { //name validator
-  window.alert("Please enter a name.")
-  return;
-}
-
-if (usernameWidget.value.length === 0) { //username validator
-  window.alert("Please enter a username.")
-  return;
-}
-
-if (emailWidget.value.length === 0 || !emailWidget.value.includes("@")) { //email validator
-  window.alert("Please enter a valid email.")
-  return;
-}
-
-if (passwordWidget.value.length ===0) { //password validator
-  window.alert("Please enter a password.")
-  return;
-}
-
-if (cPasswordWidget.value.length ===0) { //confirm password validator
-  window.alert("Please confirm password.")
-  return;
-}
-
-if (passwordWidget.value !== cPasswordWidget.value) { //passwords match validator
-  window.alert("Passwords must be the same.")
-  return;
-}
-
-//create temporary player object 
-let player = {
+// if (!profType || !password) {
+  //   event.preventDefault();
+  // }
+  let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value
   }
-  localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
+  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html";
 }
