@@ -257,6 +257,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   console.log("hi")
   let lgin = document.getElementById("lg");
   console.log(lgin)
+  console.log(localStorage)
   console.log(JSON.parse(localStorage.getItem("jim")))
   lgin.addEventListener("click", ()=>{
     console.log("hi")
@@ -273,12 +274,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
       else{
         localStorage.setItem("Current", data);
         console.log(localStorage)
-        alert("stop!")
         if(data["profile"] === "Coach"){
-          window.location.href = "src/coachPg.html";
+          Window.location.href = "src/coachPg.html";
         }
         else{
-          window.location.href = "src/home.html";
+          Window.location.href = "src/home.html";
         }
       }
   })
