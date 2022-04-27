@@ -275,12 +275,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", data);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          window.location = "src/coachPg.html"; //MAKE THIS WORK
+          window.location.href = "coachPg.html"; //MAKE THIS WORK
         }
         else{
-          window.location = "src/home.html"; //MAKE THIS WORK
+          window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
   })
 }
+
 })
