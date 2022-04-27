@@ -272,13 +272,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
       else{
         localStorage.setItem("Current", data);
+        localStorage.Current=username;
         console.log(localStorage)
-        alert("stop!")
+        //alert("stop!")
         if(data["profile"] === "Coach"){
-          window.location.href = "src/coachPg.html";
+          console.log("coach");
+          window.location.href = "coachPg.html";
         }
         else{
-          window.location.href = "src/home.html";
+          console.log("swimmer");
+          window.location.href = "home.html";
         }
       }
   })
