@@ -195,4 +195,110 @@ if(document.getElementById("eventsResults") != null){
     swimTable(username1, events.value);
     swimGraph(username1, graphPoints, events.value)
   });
+<<<<<<< HEAD
 } 
+=======
+}
+
+function putplayer(){
+  document.getElementById("addtoroster").addEventListener("click", () =>{
+      input = prompt("Enter player username");
+      data = JSON.parse(localStorage.getItem(input))
+      console.log(data)
+      table = document.getElementById("tbl");
+      if(players.has(input) && !(findinput(input,table))){
+        console.log("in");
+        var row = table.insertRow(1);
+        row.insertCell(0).innerHTML = data["name"];
+        //row.insertCell(1).innerHTML = findbestevent(input);
+      }
+      else{
+        alert("Username not found in database, or this player already exists on your table!")
+      }
+  })
+}
+function findbestevent(usrname){
+  try{
+    bestevent = null;
+    x = 0;
+    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
+      if(parseFloat(players.get(usrname).entries[i].time)>x){
+        bestevent = players.get(usrname).entries[i].race;
+      }
+    }
+    return bestevent;
+  }
+  catch (error){
+    alert("player has no race data!");
+    return null;
+  }
+}
+function removeplayer(){
+  let table = document.getElementById("tbl")
+  document.getElementById("remove").addEventListener("click", ()=>{
+    let input = prompt("Enter player username");
+    holder = findinput(input,table);
+    if(holder != false){  // players in table exist 
+      table.deleteRow(holder);
+      //remove player
+    }
+    else{
+      alert("Player not found in table");
+    }
+  })
+}
+function findinput(input,table){
+  for(var r = 0, n = table.rows.length; r < n; r++) {
+      if(table.rows[r].cells[0].innerHTML === input){
+        return(r);
+      }
+    }
+  return false;
+}
+
+function timeStore(){
+  document.getElementById("eTime").addEventListener("click", ()=>{
+    let event = document.getElementById("events");
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    let comments = document.querySelector(".comments");
+    console.log(event.value);
+    console.log(time.value);
+    console.log(date.value);
+    console.log(comments.value);
+    
+  })
+}
+document.addEventListener("DOMContentLoaded", ()=>{
+  if(document.getElementById("formLg") !== null){
+  console.log("hi")
+  let lgin = document.getElementById("lg");
+  console.log(lgin)
+  console.log(localStorage)
+  console.log(JSON.parse(localStorage.getItem("jim")))
+  lgin.addEventListener("click", ()=>{
+    console.log("hi")
+    username = document.getElementById("usernamelg").value;
+    password = document.getElementById("passwordlg").value;
+      data = JSON.parse(localStorage.getItem(username))
+      console.log(data)
+      if(data === null){
+        alert("account dosent exist!")
+      }
+      else if(!(password === data["password"])){
+        alert("Username or Password incorrect!")
+      }
+      else{
+        localStorage.setItem("Current", data);
+        console.log(localStorage)
+        if(data["profile"] === "Coach"){
+          window.location = "src/coachPg.html"; //MAKE THIS WORK
+        }
+        else{
+          window.location = "src/home.html"; //MAKE THIS WORK
+        }
+      }
+  })
+}
+})
+>>>>>>> 99e0da627ceb51d33a1bbdfed321a6c048dec27f
