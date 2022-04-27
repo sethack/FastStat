@@ -28,11 +28,15 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById("eTime") !== null){
+    timeStore();
+  }
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
+  
   players.set(
     'nemoFish', {
       password: "hello",
@@ -236,12 +240,15 @@ function findinput(input,table){
 }
 
 function timeStore(){
-  document.querySelector(".getTime").addEventListener("click", ()=>{
+  document.getElementById("eTime").addEventListener("click", ()=>{
     let event = document.getElementById("events");
     let time = document.querySelector(".time");
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
-    console.log(events.value);
+    console.log(event.value);
+    console.log(time.value);
+    console.log(date.value);
+    console.log(comments.value);
     
   })
 }
