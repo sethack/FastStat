@@ -63,7 +63,15 @@ let emailWidget = document.querySelector("#email");
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
-      password: passwordWidget.value
+      password: passwordWidget.value,
+      entries: {
+        1:{
+          race: null,
+          date: null, 
+          time: null,
+          comment: null
+        },
+      }
   }
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
@@ -245,10 +253,17 @@ function timeStore(){
     let time = document.querySelector(".time");
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
+    console.log(localStorage.Current);
+    let currentUser = localStorage.Current;
+    console.log(localStorage.getItem(currentUser).race = event.value);
+    var existing = localStorage.getItem(currentUser);
+    var data = existing ? existing + ' and tuna' : 'race';
+    localStorage.setItem(currentUser, data);
     console.log(event.value);
     console.log(time.value);
     console.log(date.value);
     console.log(comments.value);
+    console.log(localStorage.getItem(currentUser));
     
   })
 }
@@ -274,7 +289,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", data);
         localStorage.Current=username;
         console.log(localStorage)
-        //alert("stop!")
+        alert("stop!")
         if(data["profile"] === "Coach"){
           console.log("coach");
           window.location.href = "coachPg.html";
