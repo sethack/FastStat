@@ -208,9 +208,9 @@ let nemoFish = {
       comment: "Touched the butt"
     }
   }}
-  localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
+  /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
   window.alert("Account created successfully. Please log in.");
-  window.location.href = "logIn.html";
+  window.location.href = "logIn.html"; */
 
   
 
@@ -431,9 +431,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
       }
   })
 }
-<<<<<<< HEAD
-})
-=======
 
 })
->>>>>>> caa0d12b870a761520f5899d946e082759019352
