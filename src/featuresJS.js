@@ -239,7 +239,10 @@ function timeStore(){
     let time = document.querySelector(".time");
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
-    console.log(events.value);
+    console.log(event.value);
+    console.log(time.value);
+    console.log(date.value);
+    console.log(comments.value);
     
   })
 }
