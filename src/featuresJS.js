@@ -281,7 +281,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
           window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
-  })
-}
-
+    })
+  }
 })
