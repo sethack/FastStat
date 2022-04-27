@@ -29,7 +29,6 @@ let swimmer = {
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById("eTime") !== null){
-    console.log("test");
     timeStore();
   }
   if(document.querySelector("#addtoroster") !== null){
