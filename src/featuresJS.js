@@ -64,7 +64,7 @@ let emailWidget = document.querySelector("#email");
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value,
-      entries: {}
+      entries: []
   }
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
@@ -240,6 +240,40 @@ function findinput(input,table){
   return false;
 }
 
+function timeStore1(){
+  document.getElementById("eTime").addEventListener("click", ()=>{
+    let event = document.getElementById("events");
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    let comments = document.querySelector(".comments");
+    console.log(localStorage.Current);
+    let currentUsername = JSON.stringify(localStorage.current);
+    let currentUser = JSON.stringify(localStorage.getItem(localStorage.current));
+    //console.log(localStorage.getItem(localStorage.Current).entries.length);
+    //console.log(currentUser);
+    //console.log(currentUsername);
+
+    let userStats = localStorage.getItem(localStorage.current);
+    console.log(userStats);
+    
+    let count = 0;
+    for(num in currentUser.entries){
+      count++;
+    }
+    let submission = {
+      "race": event.value,
+      "date": date.value, 
+      "time": time.value,
+      "comment": comments.value
+    }
+    userStats[entries].push(submission);
+    
+    localStorage.setItem(currentUser,JSON.stringify(userStats));
+    console.log(currentUser);
+    
+  })
+}
+
 function timeStore(){
   document.getElementById("eTime").addEventListener("click", ()=>{
     let event = document.getElementById("events");
@@ -247,28 +281,25 @@ function timeStore(){
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
     console.log(localStorage.Current);
-    let currentUsername = localStorage.current;
-    let currentUser = localStorage.getItem(localStorage.Current);
-    //console.log(localStorage.getItem(localStorage.Current).entries.length);
-    let count = 0;
-    for(num in currentUser.entries){
-      count++;
-    }
-    let userStats = JSON.parse(currentUser);
-    
-    let submission = {
-        race: event.value,
-        date: time.value, 
-        time: time.value,
-        comment: comments.value
-      }
-    userStats.entries += submission;
-    localStorage.setItem(currentUsername,userStats)
-    //localStorage.setItem(currentUser,submission);
+    let currentUsername = JSON.stringify(localStorage.Current);
+    let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
     console.log(currentUser);
+    let submission = {
+      "race": event.value,
+      "date": date.value, 
+      "time": time.value,
+      "comment": comments.value
+    }
+    submission = JSON.stringify(submission);
+    
+    let currentEntries = JSON.stringify(currentUser.entries);
+    currentEntries += submission;
+    console.log(JSON.parse(currentEntries));
+    //console.log(currentUser.entries);
     
   })
 }
+
 document.addEventListener("DOMContentLoaded", ()=>{
   if(document.getElementById("formLg") !== null){
   console.log("hi")
@@ -290,7 +321,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       else{
         localStorage.setItem("Current", data);
         localStorage.Current=username;
-        console.log(localStorage)
+        console.log(localStorage.current)
         alert("stop!")
         if(data["profile"] === "Coach"){
           console.log("coach");
