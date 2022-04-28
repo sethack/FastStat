@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if(document.querySelector("#remove") !== null){
     removeplayer();
   }
-  
   players.set(
     'nemoFish', {
       password: "hello",
@@ -66,12 +65,113 @@ let emailWidget = document.querySelector("#email");
       password: passwordWidget.value,
       entries: null
   }
-  localStorage.setItem(usernameWidget.value, JSON.stringify(player));
-  window.alert("Account created successfully. Please log in.");
-  window.location.href = "logIn.html";
+
+  function addPlayer(){
+  //get form inputs
+  let profTypeWidget = document.querySelector("select");
+  let passwordWidget = document.querySelector("#password");
+  let cPasswordWidget = document.querySelector("#cPassword");
+  let nameWidget = document.querySelector("#name");
+  let usernameWidget = document.querySelector("#username");
+  let emailWidget = document.querySelector("#email"); 
+  
+  if (profTypeWidget.options[profTypeWidget.selectedIndex].value === "Please choose an account type") { //profile type validator
+    window.alert("Please select an account type.")
+    return;
+  }
+  
+  if (nameWidget.value.length === 0) { //name validator
+    window.alert("Please enter a name.")
+    return;
+  }
+  
+  if (usernameWidget.value.length === 0) { //username validator
+    window.alert("Please enter a username.")
+    return;
+  }
+  
+  if (emailWidget.value.length === 0 || !emailWidget.value.includes("@")) { //email validator
+    window.alert("Please enter a valid email.")
+    return;
+  }
+  
+  if (passwordWidget.value.length ===0) { //password validator
+    window.alert("Please enter a password.")
+    return;
+  }
+  
+  if (cPasswordWidget.value.length ===0) { //confirm password validator
+    window.alert("Please confirm password.")
+    return;
+  }
+  
+  if (passwordWidget.value !== cPasswordWidget.value) { //passwords match validator
+    window.alert("Passwords must be the same.")
+    return;
+  }
+
+//create temporary player object 
+let player = {
+  name: nameWidget.value, 
+  profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+  email: emailWidget.value,
+  password: passwordWidget.value
 }
-localStorage.setItem('nemoFish', JSON.stringify(swimmer))
-});
+localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
+window.alert("Account created successfully. Please log in.");
+window.location.href = "logIn.html";
+}
+};
+  
+
+
+
+function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
+                                                      // would it be easier if we have a map wich points to this obj?
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+  this.times = times;
+
+
+}
+function coach(name,username,email,password){
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.password = password;
+}
+
+
+let nemoFish = {
+  password: "hello",
+  name: "Nemo",
+  email: "luckyfin@fish.com",
+  entries: {
+    1:{
+      race: "100 Freestyle",
+      date: "3/7/2022", 
+      time: "144",
+      comment: "Touched the butt"
+    },
+    2:{
+      race: "100 Freestyle",
+      date: "3/8/2022", 
+      time: "144",
+      comment: "Touched the butt"
+    },
+    3:{
+      race: "200 Freestyle",
+      date: "3/9/2022", 
+      time: "164",
+      comment: "Touched the butt"
+    }
+  }}
+  /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
+  window.alert("Account created successfully. Please log in.");
+  window.location.href = "logIn.html"; */
+
   
 
 
@@ -96,7 +196,7 @@ function coach(name,username,email,password){
 
 
 function swimDates(username, races, points) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       points.push(swim.entries[num].date);
@@ -106,7 +206,7 @@ function swimDates(username, races, points) {
 }
 
 function swimTimes(username, races, points) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       points.push(parseInt(swim.entries[num].time))
@@ -116,7 +216,7 @@ function swimTimes(username, races, points) {
 }
 
 function swimTable(username, races) {
-  let swim = swimmer[username];
+  let swim = JSON.parse(localStorage.getItem(username));
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
   let count = 0;
   for(num in swim.entries){
@@ -279,6 +379,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   console.log("hi")
   let lgin = document.getElementById("lg");
   console.log(lgin)
+  console.log(localStorage)
   console.log(JSON.parse(localStorage.getItem("jim")))
   lgin.addEventListener("click", ()=>{
     console.log("hi")
@@ -290,22 +391,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
         alert("account dosent exist!")
       }
       else if(!(password === data["password"])){
-        alert("username or password incorrect!")
+        alert("Username or Password incorrect!")
       }
       else{
-        localStorage.setItem("Current", data);
-        localStorage.Current=username;
-        console.log(localStorage.current)
-        alert("stop!")
+        localStorage.setItem("Current", username);
+        console.log(localStorage)
         if(data["profile"] === "Coach"){
-          console.log("coach");
-          window.location.href = "coachPg.html";
+          window.location.href = "coachPg.html"; //MAKE THIS WORK
         }
         else{
-          console.log("swimmer");
-          window.location.href = "home.html";
+          window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
   })
 }
-})
+})})
