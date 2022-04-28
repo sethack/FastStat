@@ -64,14 +64,7 @@ let emailWidget = document.querySelector("#email");
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value,
-      entries: {
-        1:{
-          race: null,
-          date: null, 
-          time: null,
-          comment: null
-        },
-      }
+      entries: {}
   }
   localStorage.setItem(usernameWidget.value, JSON.stringify(player));
   window.alert("Account created successfully. Please log in.");
@@ -254,16 +247,25 @@ function timeStore(){
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
     console.log(localStorage.Current);
-    let currentUser = localStorage.Current;
-    console.log(localStorage.getItem(currentUser).race = event.value);
-    var existing = localStorage.getItem(currentUser);
-    var data = existing ? existing + ' and tuna' : 'race';
-    localStorage.setItem(currentUser, data);
-    console.log(event.value);
-    console.log(time.value);
-    console.log(date.value);
-    console.log(comments.value);
-    console.log(localStorage.getItem(currentUser));
+    let currentUsername = localStorage.current;
+    let currentUser = localStorage.getItem(localStorage.Current);
+    //console.log(localStorage.getItem(localStorage.Current).entries.length);
+    let count = 0;
+    for(num in currentUser.entries){
+      count++;
+    }
+    let userStats = JSON.parse(currentUser);
+    
+    let submission = {
+        race: event.value,
+        date: time.value, 
+        time: time.value,
+        comment: comments.value
+      }
+    userStats.entries += submission;
+    localStorage.setItem(currentUsername,userStats)
+    //localStorage.setItem(currentUser,submission);
+    console.log(currentUser);
     
   })
 }
