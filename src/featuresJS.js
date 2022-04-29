@@ -283,22 +283,6 @@ function putplayer(){
       }
   })
 }
-function findbestevent(usrname){
-  try{
-    bestevent = null;
-    x = 0;
-    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
-      if(parseFloat(players.get(usrname).entries[i].time)>x){
-        bestevent = players.get(usrname).entries[i].race;
-      }
-    }
-    return bestevent;
-  }
-  catch (error){
-    alert("player has no race data!");
-    return null;
-  }
-}
 function removeplayer(){
   let table = document.getElementById("tbl")
   document.getElementById("remove").addEventListener("click", ()=>{
