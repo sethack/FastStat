@@ -28,8 +28,8 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("test")
-  if(document.querySelector(".profileName")!== null){
+  console.log("test");
+  if(document.getElementById("profileName")!== null){
     console.log("test");
     document.getElementById("profileName").textContent = "Welcome "+JSON.parse(localStorage.getItem(localStorage.Current)).name;
   }
