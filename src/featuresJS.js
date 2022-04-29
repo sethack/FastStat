@@ -28,9 +28,15 @@ let swimmer = {
 
 let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("test");
+  if(document.getElementById("profileName")!== null){
+    console.log("test");
+    document.getElementById("profileName").textContent = "Welcome "+JSON.parse(localStorage.getItem(localStorage.Current)).name;
+  }
   if(document.getElementById("eTime") !== null){
     timeStore();
   }
+  
   if(document.querySelector("#addtoroster") !== null){
     putplayer();
   if(document.querySelector("#remove") !== null){
@@ -46,8 +52,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
-  let formWidget = document.querySelector("#caButton");
-  formWidget.addEventListener("click", addPlayer); 
+let formWidget = document.querySelector("#caButton");
+formWidget.addEventListener("click", addPlayer); 
+}
+function addPlayer(){
+let profTypeWidget = document.querySelector("select");
+let passwordWidget = document.querySelector("#password");
+let nameWidget = document.querySelector("#name");
+let usernameWidget = document.querySelector("#username");
+let emailWidget = document.querySelector("#email"); 
+// if (!profType || !password) {
+  //   event.preventDefault();
+  // }
+  let player = {
+      name: nameWidget.value, 
+      profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
+      email: emailWidget.value,
+      password: passwordWidget.value,
+      entries: null
   }
 
   function addPlayer(){
@@ -105,7 +127,7 @@ localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert pl
 window.alert("Account created successfully. Please log in.");
 window.location.href = "logIn.html";
 }
-});
+};
   
 
 
@@ -155,11 +177,7 @@ let nemoFish = {
   /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html"; */
-
   
-
-
-
 function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
                                                       // would it be easier if we have a map wich points to this obj?
   this.name = name;
@@ -324,6 +342,7 @@ function findinput(input,table){
   return false;
 }
 
+
 function timeStore(){
   document.getElementById("eTime").addEventListener("click", ()=>{
     let event = document.getElementById("events");
@@ -336,6 +355,7 @@ function timeStore(){
     console.log(comments.value);  
   })
 }
+
 document.addEventListener("DOMContentLoaded", ()=>{
   if(document.getElementById("formLg") !== null){
   console.log("hi")
@@ -365,13 +385,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
           window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
-<<<<<<< HEAD
     })
   }
 })
-=======
-  })
-}
-
 })
->>>>>>> d5cd249a5557bb9c2cb67d3667e1f37a3469ff40
