@@ -274,10 +274,9 @@ function putplayer(){
       console.log(data)
       table = document.getElementById("tbl");
       if(players.has(input) && !(findinput(input,table))){
-        console.log("in");
         var row = table.insertRow(1);
-        row.insertCell(0).innerHTML = data["name"];
-        //row.insertCell(1).innerHTML = findbestevent(input);
+        x = (Object.entries(data))
+        row.insertCell(0).innerHTML = x[0][1]["name"];
       }
       else{
         alert("Username not found in database, or this player already exists on your table!")
