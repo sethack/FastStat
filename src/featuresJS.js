@@ -177,25 +177,6 @@ let nemoFish = {
   /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html"; */
-  
-function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
-                                                      // would it be easier if we have a map wich points to this obj?
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-  this.times = times;
-
-
-}
-function coach(name,username,email,password){
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-}
-
-
 
 function swimDates(username, races, points) {
   let swim = JSON.parse(localStorage.getItem(username));
