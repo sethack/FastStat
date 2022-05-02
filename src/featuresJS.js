@@ -178,65 +178,65 @@ let nemoFish = {
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html"; */
 
-function swimDates(username, races, points) {
-  let swim = JSON.parse(localStorage.getItem(username));
-  console.log(swim);
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
-      points.push(swim.entries[num].date);
+function swimDates(username, races, points) {//returns array of date points
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  for(num in swim.entries){//look through all event entries
+    if(swim.entries[num].race === races){//only use desired race data
+      points.push(swim.entries[num].date);//push date to array
     }
   }
-  return points;
+  return points;//retrun array of dates for desired event
 }
 
-function swimTimes(username, races, points) {
-  let swim = JSON.parse(localStorage.getItem(username));
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
-      points.push(parseInt(swim.entries[num].time))
+function swimTimes(username, races, points) {//returns an array of time points
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  for(num in swim.entries){//look through all event entries
+    if(swim.entries[num].race === races){//only use desired race data
+      points.push(parseInt(swim.entries[num].time));//push time to array
     }
   }
-  return points;
+  return points;//return array of times for desired event
 }
 
-function swimTable(username, races) {
-  let swim = JSON.parse(localStorage.getItem(username));
+function swimTable(username, races) {//create HTML table for desired race, times, date, and comments
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  //create HTML table 
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
-  let count = 0;
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
+  let count = 0;//keep track of how many entries athlete has entered the desire race
+  for(num in swim.entries){//look through all entries
+    if(swim.entries[num].race === races){//only use desired race data
       html += '<tr>';
-      html += '<th>' + swim.entries[num].date + '</th>';
-      html += '<td>' + swim.entries[num].race + '</td>';
-      html += '<td>' + swim.entries[num].time + '</td>';
-      html += '<td>' + swim.entries[num].comment + '</td>';
+      html += '<th>' + swim.entries[num].date + '</th>';//enter date data
+      html += '<td>' + swim.entries[num].race + '</td>';//enter race data
+      html += '<td>' + swim.entries[num].time + '</td>';//enter time data
+      html += '<td>' + swim.entries[num].comment + '</td>';//enter comments
       html += '</tr>';
-      count ++;
+      count ++;//update count
     }
   }
-  if(count === 0){
+  if(count === 0){//if no events matching desired race are found
+    //table will show message saying "No Recorded Times For" the desired race
     html += '<tr>';
     html += '<td colspan = "4" style = "font-size: 16pt">No Recorded Times For '+ races + '</td>';
     html += '</tr>';
   }
-  html += '</table>';
-  if(document.getElementById("statTable") !=null){
-    document.getElementById("statTable").innerHTML = html;
+  html += '</table>';//end HTML table format
+  if(document.getElementById("statTable") !=null){//check to make see if there is a prevous table
+    document.getElementById("statTable").innerHTML = html;//insert table into HTML document through DOM
   }
-  return html;
 }
 
- function swimGraph(username, dates, times, event){
-  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
-  document.getElementById("chart").innerHTML = html;
-  new Chart("myChart", {
+ function swimGraph(username, dates, times, event){//creates a graphical representation of user race data
+  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';//HTML code for graph
+  document.getElementById("chart").innerHTML = html;//add graph code to HTML through DOM
+  new Chart("myChart", {//create new graph
     type: "line",
     data: {
-      labels: dates,
+      labels: dates,//horizontal axis will be dates 
       datasets: [{
         label: "Times",
         borderColor: "black",
-        data: times,
+        data: times,//vertical axis will be times
         fill: false
       }]
     },
@@ -252,21 +252,20 @@ function swimTable(username, races) {
 })}; 
 
 
-if(document.getElementById("eventsResults") != null){
+if(document.getElementById("eventsResults") != null){//check to see if element is in current DOM
 
-  var username1 = localStorage.getItem('Current');
-  console.log(username1)
-  let events = document.getElementById("eventsResults");
+  var username1 = localStorage.getItem('Current');//find current user's username
+  let events = document.getElementById("eventsResults");//create variable for events pull down
   
-  events.addEventListener("change", () => { 
+  events.addEventListener("change", () => { //add event listener for when event is changed
     
-    let datePoints = [];
-    let timePoints = [];
-    datePoints = swimDates(username1, events.value, datePoints);
-    timePoints = swimTimes(username1, events.value, timePoints);
-    //console.log(graphPoints);
-    swimTable(username1, events.value);
-    swimGraph(username1, datePoints, timePoints, events.value)
+    let datePoints = [];//initailize date array
+    let timePoints = [];//initialize time array
+    datePoints = swimDates(username1, events.value, datePoints);//find date point
+    timePoints = swimTimes(username1, events.value, timePoints);//fine time points
+    
+    swimTable(username1, events.value);//create HTML table
+    swimGraph(username1, datePoints, timePoints, events.value);//create graph
   });
 }
 
