@@ -140,8 +140,9 @@ function player(name,username,email,password,times) {  // so im aware we have a 
   this.password = password;
   this.times = times;
 
-
 }
+
+
 function coach(name,username,email,password){
   this.name = name;
   this.username = username;
@@ -150,115 +151,71 @@ function coach(name,username,email,password){
 }
 
 
-let nemoFish = {
-  password: "hello",
-  name: "Nemo",
-  email: "luckyfin@fish.com",
-  entries: {
-    1:{
-      race: "100 Freestyle",
-      date: "3/7/2022", 
-      time: "144",
-      comment: "Touched the butt"
-    },
-    2:{
-      race: "100 Freestyle",
-      date: "3/8/2022", 
-      time: "144",
-      comment: "Touched the butt"
-    },
-    3:{
-      race: "200 Freestyle",
-      date: "3/9/2022", 
-      time: "164",
-      comment: "Touched the butt"
-    }
-  }}
   /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
   window.alert("Account created successfully. Please log in.");
   window.location.href = "logIn.html"; */
 
-  
 
 
-
-function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
-                                                      // would it be easier if we have a map wich points to this obj?
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-  this.times = times;
-
-
-}
-function coach(name,username,email,password){
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-}
-
-
-
-function swimDates(username, races, points) {
-  let swim = JSON.parse(localStorage.getItem(username));
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
-      points.push(swim.entries[num].date);
+function swimDates(username, races, points) {//returns array of date points
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  for(num in swim.entries){//look through all event entries
+    if(swim.entries[num].race === races){//only use desired race data
+      points.push(swim.entries[num].date);//push date to array
     }
   }
-  return points;
+  return points;//retrun array of dates for desired event
 }
 
-function swimTimes(username, races, points) {
-  let swim = JSON.parse(localStorage.getItem(username));
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
-      points.push(parseInt(swim.entries[num].time))
+function swimTimes(username, races, points) {//returns an array of time points
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  for(num in swim.entries){//look through all event entries
+    if(swim.entries[num].race === races){//only use desired race data
+      points.push(parseInt(swim.entries[num].time));//push time to array
     }
   }
-  return points;
+  return points;//return array of times for desired event
 }
 
-function swimTable(username, races) {
-  let swim = JSON.parse(localStorage.getItem(username));
+function swimTable(username, races) {//create HTML table for desired race, times, date, and comments
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  //create HTML table 
   html = '<table id = "statTable" style="width:100%"><tr class = "two"><th>Date</th><th>Event</th><th>Time (s)</th><th style="width:70%">Comments</th></tr>';
-  let count = 0;
-  for(num in swim.entries){
-    if(swim.entries[num].race === races){
+  let count = 0;//keep track of how many entries athlete has entered the desire race
+  for(num in swim.entries){//look through all entries
+    if(swim.entries[num].race === races){//only use desired race data
       html += '<tr>';
-      html += '<th>' + swim.entries[num].date + '</th>';
-      html += '<td>' + swim.entries[num].race + '</td>';
-      html += '<td>' + swim.entries[num].time + '</td>';
-      html += '<td>' + swim.entries[num].comment + '</td>';
+      html += '<th>' + swim.entries[num].date + '</th>';//enter date data
+      html += '<td>' + swim.entries[num].race + '</td>';//enter race data
+      html += '<td>' + swim.entries[num].time + '</td>';//enter time data
+      html += '<td>' + swim.entries[num].comment + '</td>';//enter comments
       html += '</tr>';
-      count ++;
+      count ++;//update count
     }
   }
-  if(count === 0){
+  if(count === 0){//if no events matching desired race are found
+    //table will show message saying "No Recorded Times For" the desired race
     html += '<tr>';
     html += '<td colspan = "4" style = "font-size: 16pt">No Recorded Times For '+ races + '</td>';
     html += '</tr>';
   }
-  html += '</table>';
-  if(document.getElementById("statTable") !=null){
-    document.getElementById("statTable").innerHTML = html;
+  html += '</table>';//end HTML table format
+  if(document.getElementById("statTable") !=null){//check to make see if there is a prevous table
+    document.getElementById("statTable").innerHTML = html;//insert table into HTML document through DOM
   }
-  return html;
 }
 
- function swimGraph(username, dates, times, event){
-  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';
-  document.getElementById("chart").innerHTML = html;
-  new Chart("myChart", {
+ function swimGraph(username, dates, times, event){//creates a graphical representation of user race data
+  html = '<canvas id="myChart" style="width:100%;max-width:700px"></canvas>';//HTML code for graph
+  document.getElementById("chart").innerHTML = html;//add graph code to HTML through DOM
+  new Chart("myChart", {//create new graph
     type: "line",
     data: {
-      labels: dates,
+      labels: dates,//horizontal axis will be dates 
       datasets: [{
         label: "Times",
         borderColor: "black",
-        data: times,
+        data: times,//vertical axis will be times
         fill: false
       }]
     },
@@ -273,20 +230,21 @@ function swimTable(username, races) {
     }
 })}; 
 
-var username1 = "nemoFish";
-if(document.getElementById("eventsResults") != null){
-  var username1 = "nemoFish";
-  let events = document.getElementById("eventsResults");
+
+if(document.getElementById("eventsResults") != null){//check to see if element is in current DOM
+
+  var username1 = localStorage.getItem('Current');//find current user's username
+  let events = document.getElementById("eventsResults");//create variable for events pull down
   
-  events.addEventListener("change", () => { 
+  events.addEventListener("change", () => { //add event listener for when event is changed
     
-    let datePoints = [];
-    let timePoints = [];
-    datePoints = swimDates(username1, events.value, datePoints);
-    timePoints = swimTimes(username1, events.value, timePoints);
-    //console.log(graphPoints);
-    swimTable(username1, events.value);
-    swimGraph(username1, datePoints, timePoints, events.value)
+    let datePoints = [];//initailize date array
+    let timePoints = [];//initialize time array
+    datePoints = swimDates(username1, events.value, datePoints);//find date point
+    timePoints = swimTimes(username1, events.value, timePoints);//fine time points
+    
+    swimTable(username1, events.value);//create HTML table
+    swimGraph(username1, datePoints, timePoints, events.value);//create graph
   });
 }
 
@@ -297,31 +255,14 @@ function putplayer(){
       console.log(data)
       table = document.getElementById("tbl");
       if(players.has(input) && !(findinput(input,table))){
-        console.log("in");
         var row = table.insertRow(1);
-        row.insertCell(0).innerHTML = data["name"];
-        //row.insertCell(1).innerHTML = findbestevent(input);
+        x = (Object.entries(data))
+        row.insertCell(0).innerHTML = x[0][1]["name"];
       }
       else{
         alert("Username not found in database, or this player already exists on your table!")
       }
   })
-}
-function findbestevent(usrname){
-  try{
-    bestevent = null;
-    x = 0;
-    for(let i = 1;i<=Object.keys(players.get(usrname).entries).length;i++){ 
-      if(parseFloat(players.get(usrname).entries[i].time)>x){
-        bestevent = players.get(usrname).entries[i].race;
-      }
-    }
-    return bestevent;
-  }
-  catch (error){
-    alert("player has no race data!");
-    return null;
-  }
 }
 function removeplayer(){
   let table = document.getElementById("tbl")
@@ -353,6 +294,7 @@ function timeStore(){
     let time = document.querySelector(".time");
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
+<<<<<<< HEAD
     console.log(localStorage.Current);
     let currentUsername = JSON.stringify(localStorage.Current);
     let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
@@ -377,6 +319,12 @@ function timeStore(){
     //console.log(currentEntries));
     console.log(currentUser);
     
+=======
+    console.log(event.value);
+    console.log(time.value);
+    console.log(date.value);
+    console.log(comments.value);  
+>>>>>>> 9cd3c23d8a55d541d319844e59466d331c0d5f9f
   })
 }
 
@@ -409,6 +357,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
           window.location.href = "home.html"; //MAKE THIS WORK
         }
       }
-  })
-}
-})})
+    })
+  }
+})
+})
