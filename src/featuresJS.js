@@ -30,7 +30,7 @@ let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
   console.log("test");
   if(document.getElementById("profileName")!== null){
-    console.log("test");
+    console.log("on homepage");
     document.getElementById("profileName").textContent = "Welcome "+JSON.parse(localStorage.getItem(localStorage.Current)).name;
   }
   if(document.getElementById("eTime") !== null){
@@ -373,7 +373,7 @@ function timeStore(){
       let returnEntries = currentEntries+","+strSubmission
       currentUser.entries = JSON.parse(returnEntries);
     }
-    localStorage.setItem(JSON.stringify(JSON.stringify(localStorage.Current)),JSON.stringify(currentUser));
+    localStorage.setItem(JSON.stringify(localStorage.Current),JSON.stringify(currentUser));
     //console.log(currentEntries));
     console.log(currentUser);
     
