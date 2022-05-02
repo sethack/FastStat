@@ -294,7 +294,6 @@ function timeStore(){
     let time = document.querySelector(".time");
     let date = document.querySelector(".date");
     let comments = document.querySelector(".comments");
-<<<<<<< HEAD
     console.log(localStorage.Current);
     let currentUsername = JSON.stringify(localStorage.Current);
     let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
@@ -319,12 +318,6 @@ function timeStore(){
     //console.log(currentEntries));
     console.log(currentUser);
     
-=======
-    console.log(event.value);
-    console.log(time.value);
-    console.log(date.value);
-    console.log(comments.value);  
->>>>>>> 9cd3c23d8a55d541d319844e59466d331c0d5f9f
   })
 }
 
