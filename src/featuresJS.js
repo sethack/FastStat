@@ -180,6 +180,7 @@ let nemoFish = {
 
 function swimDates(username, races, points) {
   let swim = JSON.parse(localStorage.getItem(username));
+  console.log(swim);
   for(num in swim.entries){
     if(swim.entries[num].race === races){
       points.push(swim.entries[num].date);
@@ -250,9 +251,11 @@ function swimTable(username, races) {
     }
 })}; 
 
-var username1 = "nemoFish";
+
 if(document.getElementById("eventsResults") != null){
-  var username1 = "nemoFish";
+
+  var username1 = localStorage.getItem('Current');
+  console.log(username1)
   let events = document.getElementById("eventsResults");
   
   events.addEventListener("change", () => { 
