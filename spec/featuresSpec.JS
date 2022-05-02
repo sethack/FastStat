@@ -32,20 +32,26 @@ describe("addPlayer", () => {
 
 describe("swimDates", () => {
     
-  let graphPoints = [];
-  let graphPoints1 = [];
-  swimDates("nemoFish", "100 Freestyle", graphPoints);
+  
   
 it("adds points correctly", () => {
+  let graphPoints = [];
+  
+  swimDates("nemoFish", "100 Freestyle", graphPoints);
     expect(graphPoints[1]).toBe('3/8/2022');
 });
 
 it("correct size when data present", () => {
+  let graphPoints = [];
+  
+  swimDates("nemoFish", "100 Freestyle", graphPoints);
     expect(graphPoints.length).toBe(2);
 });
 
-swimDates("nemoFish", "50 Freestyle", graphPoints1);
+
 it("correct size when data not present", () => {
+  let graphPoints1 = [];
+  swimDates("nemoFish", "50 Freestyle", graphPoints1);
     expect(graphPoints1.length).toBe(0);
 });
 });
