@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 }
 
-/***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
@@ -61,10 +60,13 @@ let passwordWidget = document.querySelector("#password");
 let nameWidget = document.querySelector("#name");
 let usernameWidget = document.querySelector("#username");
 let emailWidget = document.querySelector("#email"); 
+<<<<<<< HEAD
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
   let entryArr = []
+=======
+>>>>>>> aaf99889e7fd5ef8f5eb44929822df74f8fb34f3
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
@@ -129,6 +131,17 @@ window.alert("Account created successfully. Please log in.");
 window.location.href = "logIn.html";
 }
 };
+<<<<<<< HEAD
+function swimDates(username, races, points) {//returns array of date points
+  let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
+  for(num in swim.entries){//look through all event entries
+    if(swim.entries[num].race === races){//only use desired race data
+      points.push(swim.entries[num].date);//push date to array
+    }
+  }
+  return points;//retrun array of dates for desired event
+}
+=======
   
 
 
@@ -158,6 +171,7 @@ function coach(name,username,email,password){
 
 
 
+>>>>>>> 5d2ee04ee9f6c926a6d3c4ce364945492d5db44b
 
 
  
@@ -229,7 +243,6 @@ function timeStore(){
     console.log(localStorage.Current);
     let currentUsername = JSON.stringify(localStorage.Current);
     let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
-    //console.log(currentUser);
     let submission = {
       "race": event.value,
       "date": date.value, 
@@ -237,7 +250,6 @@ function timeStore(){
       "comment": comments.value
     }
     strSubmission = JSON.stringify(submission);
-    //userStats.entries.push(submission);
     if (JSON.stringify(currentUser.entries)=="{}"){
       currentUser.entries = submission;
     }
@@ -247,7 +259,6 @@ function timeStore(){
       currentUser.entries = JSON.parse(returnEntries);
     }
     localStorage.setItem(JSON.stringify(localStorage.Current),JSON.stringify(currentUser));
-    //console.log(currentEntries));
     console.log(currentUser);
     
   })
@@ -276,10 +287,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", username);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          window.location.href = "coachPg.html"; //MAKE THIS WORK
+          window.location.href = "coachPg.html"; 
         }
         else{
-          window.location.href = "home.html"; //MAKE THIS WORK
+          window.location.href = "home.html"; 
         }
       }
     })
