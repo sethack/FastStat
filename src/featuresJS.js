@@ -64,13 +64,14 @@ let emailWidget = document.querySelector("#email");
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
+  let entryArr = []
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
       email: emailWidget.value,
       password: passwordWidget.value,
-      entries: null
-  }
+      entries: entryArr
+}
 
   function addPlayer(){
   //get form inputs
