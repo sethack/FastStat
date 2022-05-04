@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 }
 
-/***Create Account HTML functions***/
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
@@ -61,9 +60,6 @@ let passwordWidget = document.querySelector("#password");
 let nameWidget = document.querySelector("#name");
 let usernameWidget = document.querySelector("#username");
 let emailWidget = document.querySelector("#email"); 
-// if (!profType || !password) {
-  //   event.preventDefault();
-  // }
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
@@ -128,35 +124,6 @@ window.alert("Account created successfully. Please log in.");
 window.location.href = "logIn.html";
 }
 };
-  
-
-
-
-function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
-                                                      // would it be easier if we have a map wich points to this obj?
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-  this.times = times;
-
-}
-
-
-function coach(name,username,email,password){
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-}
-
-
-  /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
-  window.alert("Account created successfully. Please log in.");
-  window.location.href = "logIn.html"; */
-
-
-
 function swimDates(username, races, points) {//returns array of date points
   let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
   for(num in swim.entries){//look through all event entries
@@ -297,7 +264,6 @@ function timeStore(){
     console.log(localStorage.Current);
     let currentUsername = JSON.stringify(localStorage.Current);
     let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
-    //console.log(currentUser);
     let submission = {
       "race": event.value,
       "date": date.value, 
@@ -305,7 +271,6 @@ function timeStore(){
       "comment": comments.value
     }
     strSubmission = JSON.stringify(submission);
-    //userStats.entries.push(submission);
     if (JSON.stringify(currentUser.entries)=="{}"){
       currentUser.entries = submission;
     }
@@ -315,7 +280,6 @@ function timeStore(){
       currentUser.entries = JSON.parse(returnEntries);
     }
     localStorage.setItem(JSON.stringify(localStorage.Current),JSON.stringify(currentUser));
-    //console.log(currentEntries));
     console.log(currentUser);
     
   })
@@ -344,10 +308,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
         localStorage.setItem("Current", username);
         console.log(localStorage)
         if(data["profile"] === "Coach"){
-          window.location.href = "coachPg.html"; //MAKE THIS WORK
+          window.location.href = "coachPg.html"; 
         }
         else{
-          window.location.href = "home.html"; //MAKE THIS WORK
+          window.location.href = "home.html"; 
         }
       }
     })
