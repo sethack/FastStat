@@ -31,8 +31,10 @@ let players = new Map();
 document.addEventListener('DOMContentLoaded', () => {
   console.log("test");
   if(document.getElementById("profileName")!== null){
-    console.log("on homepage");
     document.getElementById("profileName").textContent = "Welcome "+JSON.parse(localStorage.getItem(localStorage.Current)).name;
+  }
+  if(document.getElementById("coachName")!== null){
+    document.getElementById("coachName").textContent = "Welcome "+JSON.parse(localStorage.getItem(localStorage.Current)).name;
   }
   if(document.getElementById("eTime") !== null){
     timeStore();
