@@ -60,13 +60,10 @@ let passwordWidget = document.querySelector("#password");
 let nameWidget = document.querySelector("#name");
 let usernameWidget = document.querySelector("#username");
 let emailWidget = document.querySelector("#email"); 
-<<<<<<< HEAD
 // if (!profType || !password) {
   //   event.preventDefault();
   // }
   let entryArr = []
-=======
->>>>>>> aaf99889e7fd5ef8f5eb44929822df74f8fb34f3
   let player = {
       name: nameWidget.value, 
       profile: profTypeWidget.options[profTypeWidget.selectedIndex].value,
@@ -131,7 +128,6 @@ window.alert("Account created successfully. Please log in.");
 window.location.href = "logIn.html";
 }
 };
-<<<<<<< HEAD
 function swimDates(username, races, points) {//returns array of date points
   let swim = JSON.parse(localStorage.getItem(username));//current swimmer object
   for(num in swim.entries){//look through all event entries
@@ -141,37 +137,6 @@ function swimDates(username, races, points) {//returns array of date points
   }
   return points;//retrun array of dates for desired event
 }
-=======
-  
-
-
-
-function player(name,username,email,password,times) {  // so im aware we have a map going rn to store these things,
-                                                      // would it be easier if we have a map wich points to this obj?
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-  this.times = times;
-
-}
-
-
-function coach(name,username,email,password){
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.password = password;
-}
-
-
-  /* localStorage.setItem(usernameWidget.value, JSON.stringify(player)); //convert player object to JSON and store in local storage with username as key
-  window.alert("Account created successfully. Please log in.");
-  window.location.href = "logIn.html"; */
-
-
-
->>>>>>> 5d2ee04ee9f6c926a6d3c4ce364945492d5db44b
 
 
  
@@ -234,7 +199,7 @@ function findinput(input,table){
 }
 
 
-function timeStore(){
+function timeStore1(){
   document.getElementById("eTime").addEventListener("click", ()=>{
     let event = document.getElementById("events");
     let time = document.querySelector(".time");
@@ -254,13 +219,34 @@ function timeStore(){
       currentUser.entries = submission;
     }
     else{
-      let currentEntries = JSON.stringify(currentUser.entries);
-      let returnEntries = currentEntries+","+strSubmission
-      currentUser.entries = JSON.parse(returnEntries);
+      currentUser.entries = JSON.stringify(currentUser.entries)+","+JSON.stringify(submission);
     }
     localStorage.setItem(JSON.stringify(localStorage.Current),JSON.stringify(currentUser));
     console.log(currentUser);
     
+  })
+}
+let count=1;
+function timeStore(){
+  document.getElementById("eTime").addEventListener("click", ()=>{
+    let event = document.getElementById("events");
+    let time = document.querySelector(".time");
+    let date = document.querySelector(".date");
+    let comments = document.querySelector(".comments");
+    console.log(localStorage.Current);
+    let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
+    console.log(count);
+    let submission = {
+        "race": event.value,
+        "date": date.value, 
+        "time": time.value,
+        "comment": comments.value
+    }
+    currentUser.entries[count] = submission;
+    console.log(currentUser);
+    localStorage.setItem(localStorage.Current,JSON.stringify(currentUser));
+    console.log(localStorage.bsawyer);
+    count++;
   })
 }
 
