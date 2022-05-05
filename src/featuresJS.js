@@ -1,3 +1,4 @@
+
 let swimmer = {
   nemoFish: {
     password: "hello",
@@ -199,34 +200,7 @@ function findinput(input,table){
 }
 
 
-function timeStore1(){
-  document.getElementById("eTime").addEventListener("click", ()=>{
-    let event = document.getElementById("events");
-    let time = document.querySelector(".time");
-    let date = document.querySelector(".date");
-    let comments = document.querySelector(".comments");
-    console.log(localStorage.Current);
-    let currentUsername = JSON.stringify(localStorage.Current);
-    let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
-    let submission = {
-      "race": event.value,
-      "date": date.value, 
-      "time": time.value,
-      "comment": comments.value
-    }
-    strSubmission = JSON.stringify(submission);
-    if (JSON.stringify(currentUser.entries)=="{}"){
-      currentUser.entries = submission;
-    }
-    else{
-      currentUser.entries = JSON.stringify(currentUser.entries)+","+JSON.stringify(submission);
-    }
-    localStorage.setItem(JSON.stringify(localStorage.Current),JSON.stringify(currentUser));
-    console.log(currentUser);
-    
-  })
-}
-let count=1;
+
 function timeStore(){
   document.getElementById("eTime").addEventListener("click", ()=>{
     let event = document.getElementById("events");
@@ -235,6 +209,10 @@ function timeStore(){
     let comments = document.querySelector(".comments");
     console.log(localStorage.Current);
     let currentUser = JSON.parse(localStorage.getItem(localStorage.Current));
+    let count=1;
+    for (let i in currentUser.entries){
+      count++;
+    }
     console.log(count);
     let submission = {
         "race": event.value,
@@ -245,7 +223,7 @@ function timeStore(){
     currentUser.entries[count] = submission;
     console.log(currentUser);
     localStorage.setItem(localStorage.Current,JSON.stringify(currentUser));
-    console.log(localStorage.bsawyer);
+    console.log(JSON.parse(localStorage.bsawyer));
     count++;
   })
 }
