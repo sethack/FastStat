@@ -51,11 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
       name: "Nemo",
       email: "luckyfin@fish.com"
     })
-}
+
 
 if(document.querySelector("#caButton") !== null){
 let formWidget = document.querySelector("#caButton");
 formWidget.addEventListener("click", addPlayer); 
+}
 }
 function addPlayer(){
 let profTypeWidget = document.querySelector("select");
