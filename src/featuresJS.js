@@ -222,11 +222,15 @@ function timeStore(){
         "time": time.value,
         "comment": comments.value
     }
+    //currentUser.entries = {}; //use to reset entries for current user
     currentUser.entries[count] = submission;
     console.log(currentUser);
     localStorage.setItem(localStorage.Current,JSON.stringify(currentUser));
     console.log(JSON.parse(localStorage.bsawyer));
-    count++;
+    event.value = "";
+    date.value = "";
+    time.value = "";
+    comments.value = "";
   })
 }
 
